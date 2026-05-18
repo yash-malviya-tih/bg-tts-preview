@@ -2,9 +2,11 @@ import { FeatureItem, LanguageDemo, VoicePreset } from './types';
 import { Mic, Globe, Repeat, Zap, Layers, Languages } from 'lucide-react';
 
 const envApiUrl = (import.meta as any).env?.VITE_TTS_API_URL as string | undefined;
-export const API_URL = envApiUrl && envApiUrl.trim().length > 0 ? envApiUrl : '/api/tts';
+const baseUrl = ((import.meta as any).env?.BASE_URL as string | undefined) || '/';
+export const buildAppUrl = (assetPath: string) => `${baseUrl.replace(/\/$/, '')}/${assetPath.replace(/^\//, '')}`;
+export const API_URL = envApiUrl && envApiUrl.trim().length > 0 ? envApiUrl : buildAppUrl('/api/tts/synthesize/upload');
 
-export const LOGO_URL = "/bharatgen-logo.png";
+export const LOGO_URL = buildAppUrl('/bharatgen-logo.png');
 
 export const VOICE_PRESETS: VoicePreset[] = [
   {
@@ -85,8 +87,8 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     demos: [
       {
         title: "Standard English",
-        display_text: "BharatGen is building AI for Indian languages.",
-        actual_text: "BharatGen is building AI for Indian languages.",
+        display_text: "This is an example of English audio.",
+        actual_text: "This is an example of English audio",
         type: "Normal"
       },
       {
@@ -240,6 +242,19 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
         title: "Standard Urdu",
         display_text: "BharatGen gives voice to every language.",
         actual_text: "ہماچل ایکسپریس",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'sa',
+    name: 'Sanskrit',
+    scriptLabel: 'संस्कृतम्',
+    demos: [
+      {
+        title: "Standard Sanskrit",
+        display_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
+        actual_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
         type: "Normal"
       }
     ]

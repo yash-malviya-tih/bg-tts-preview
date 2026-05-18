@@ -11,11 +11,14 @@ const blobToBase64 = (file: Blob): Promise<string> => {
   });
 };
 
+const baseUrl = (import.meta.env.BASE_URL as string | undefined) || '/';
+const defaultWhisperUrl = `${baseUrl.replace(/\/$/, '')}/api/whisper`;
+
 export const transcribeAudio = async (
   file: Blob,
   languageHint?: string
 ): Promise<string> => {
-  const apiUrl = (import.meta.env.VITE_WHISPER_API_URL as string | undefined) || '/api/whisper';
+  const apiUrl = (import.meta.env.VITE_WHISPER_API_URL as string | undefined) || defaultWhisperUrl;
 
   const audioBase64 = await blobToBase64(file);
   const response = await fetch(apiUrl, {

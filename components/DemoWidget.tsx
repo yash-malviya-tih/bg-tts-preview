@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Play, Pause, Loader2, FileAudio, Zap, Globe, ChevronDown, Check, X, RefreshCw } from 'lucide-react';
-import { generateSpeech, fileToBase64 } from '../services/ttsService';
+import { generateSpeech } from '../services/ttsService';
 import { transcribeAudio } from '../services/transcriptionService';
 import { LANGUAGE_DEMOS } from '../constants';
 import { BharatGenVoice } from '../types';
@@ -241,12 +241,11 @@ const DemoWidget: React.FC = () => {
     setGeneratedAudioUrl(null);
 
     try {
-      const audioBase64 = await fileToBase64(activeRefFile);
       const url = await generateSpeech({
-        ref_audio_base64: audioBase64,
-        ref_text: activeRefText,
-        gen_text: genText,
-        lang: selectedLang.id
+        refAudio: activeRefFile,
+        refText: activeRefText,
+        text: genText,
+        language: selectedLang.id
       });
       setGeneratedAudioUrl(url);
       if (generateStartRef.current) {

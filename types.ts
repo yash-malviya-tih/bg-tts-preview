@@ -1,14 +1,12 @@
 import React from 'react';
 
 export interface TTSRequest {
-  ref_audio_base64: string;
-  ref_text: string;
-  gen_text: string;
-  lang?: string; // Query param
-}
-
-export interface TTSResponse {
-  audio_base64: string;
+  refAudio: Blob;
+  refText: string;
+  text: string;
+  language?: string;
+  nfeStep?: number;
+  speed?: number;
 }
 
 export interface LanguageDemo {

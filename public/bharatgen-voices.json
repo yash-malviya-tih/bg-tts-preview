@@ -14,8 +14,8 @@
     "languageId": "bn",
     "languageName": "Bengali",
     "region": "India",
-    "audioUrl": "/voices/bg-bn.wav",
-    "refText": "সুদু এক খুনের কথা নয়, নিরজার হরণ বৃত্তান তো প্রকাশ হেছে।"
+    "audioUrl": "/voices/bg-bn2.wav",
+    "refText": "আমাকে সাবলম্ম্বন পেনশন স্কিম সম্পর্কে কয়েকটা ব্যাপার বলতে পারবে, প্লিজ?"
   },
   {
     "id": "bg-gu-darshan",
@@ -104,7 +104,16 @@
     "languageId": "mr",
     "languageName": "Marathi",
     "region": "India",
-    "audioUrl": "/voices/bg-mr.wav",
-    "refText": "सत्तत काई न काई नवीन कारेकरम होतस्तात मने दिथे।"
+    "audioUrl": "/voices/bg-mr-f.wav",
+    "refText": "गाडीचे इन्शुरन्स, ॲक्सेसरीज याचे सगळ्याचे वेगळे चार्जेस लागतात."
+  },
+  {
+    "id": "bg-sa-sandhya",
+    "name": "Smruti",
+    "languageId": "sa",
+    "languageName": "Sanskrit",
+    "region": "India",
+    "audioUrl": "/voices/voice-sa.wav",
+    "refText": "संध्या समये आगत्य ते कार्यस्य आरम्भं करिष्यन्ति।"
   }
 ]
