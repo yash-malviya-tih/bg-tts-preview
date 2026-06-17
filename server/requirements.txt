@@ -1,3 +1,5 @@
 fastapi==0.115.8
 uvicorn==0.34.0
+python-multipart==0.0.20
 faster-whisper==1.1.0
+-e /workspace/personal/team_folders/vansh.pundir/F5-TTS-22-lang/F5-TTS

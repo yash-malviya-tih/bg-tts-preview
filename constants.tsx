@@ -12,36 +12,36 @@ export const VOICE_PRESETS: VoicePreset[] = [
   {
     id: 'hi',
     name: 'Hindi',
-    audioUrl: '/voices/voice-hi.wav',
-    refText: 'हम जल्द से जल्द इस समस्या का समाधान करेंगे।',
+    audioUrl: '/api/tts/reference/hi',
+    refText: 'बोली कैसे नमकहराम बैल हैं कि एक दिन भी वहाँ काम न किया।',
     languageId: 'hi'
   },
   {
     id: 'bn',
     name: 'Bengali',
-    audioUrl: '/voices/voice-bn.wav',
-    refText: 'তাতে অবশ্য ভড়ং ভণ্ডামি আর দুর্নীতির শেষ নেই',
+    audioUrl: '/api/tts/reference/bn',
+    refText: 'এটা খুবই উৎসাহজনক। আমরা মধুবনী চিত্রকলা নিয়েও কিছু জানতে চাই।',
     languageId: 'bn'
   },
   {
     id: 'ta',
     name: 'Tamil',
-    audioUrl: '/voices/voice-ta.wav',
-    refText: 'சென்னை சென்ட்ரல் விஜயவாடா ஜன் சதாப்தி எக்ஸ்பிரஸ்',
+    audioUrl: '/api/tts/reference/ta',
+    refText: 'திரும்பி ஓடிவந்து கொண்டிருந்த அவளை நாலே பாய்ச்சலில் பிடித்துவிடலாம் என்பதுதான் அவனுடைய உத்தேசம்.',
     languageId: 'ta'
   },
   {
     id: 'mr',
     name: 'Marathi',
-    audioUrl: '/voices/voice-mr.wav',
-    refText: 'यासाठी एखादं टूर पॅकेज सुचवाल का?',
+    audioUrl: '/api/tts/reference/mr',
+    refText: 'खांगखुईचे लेणे ही उखरुल जिल्ह्यातील चुनखडीची एक नैसर्गिक गुंफा आहे.',
     languageId: 'mr'
   },
   {
     id: 'en',
-    name: 'English',
-    audioUrl: '/voices/voice-en.wav',
-    refText: 'Some call me nature, others call me mother nature.',
+    name: 'Indian English',
+    audioUrl: '/api/tts/reference/en',
+    refText: 'Ask her to bring these things with her from the store.',
     languageId: 'en'
   }
 ];
@@ -49,12 +49,12 @@ export const VOICE_PRESETS: VoicePreset[] = [
 export const FEATURES: FeatureItem[] = [
   {
     title: "Voice Cloning",
-    description: "Clone a speaker’s voice from a short audio sample while preserving natural tone and style.",
+    description: "Clone a speaker's voice from a short audio sample while preserving natural tone and style.",
     icon: Mic
   },
   {
     title: "Polyglot Generation",
-    description: "Generate speech seamlessly across 12 languages using a single unified model.",
+    description: "Generate speech across the full 22-language BharatGen model from one unified system.",
     icon: Globe
   },
   {
@@ -69,26 +69,78 @@ export const FEATURES: FeatureItem[] = [
   },
   {
     title: "Code-Mixed Speech",
-    description: "Naturally handles mixed-language sentences like Hindi–English or Tamil–English.",
+    description: "Handles mixed-script and mixed-language inputs using IPA and language-id normalization.",
     icon: Layers
   },
   {
-    title: "12-Language Support",
-    description: "Supports Indian-accented English, Hindi, Bengali, Gujarati, Kannada, and more.",
+    title: "22-Language Support",
+    description: "Supports Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Kashmiri, Konkani, Maithili, Malayalam, Manipuri, Marathi, Nepali, Odia, Punjabi, Sanskrit, Santali, Sindhi, Tamil, Telugu, and Urdu.",
     icon: Languages
   }
 ];
 
 export const LANGUAGE_DEMOS: LanguageDemo[] = [
   {
-    id: 'en',
-    name: 'English',
-    scriptLabel: 'English',
+    id: 'as',
+    name: 'Assamese',
+    scriptLabel: 'অসমীয়া',
     demos: [
       {
-        title: "Standard English",
-        display_text: "This is an example of English audio.",
-        actual_text: "This is an example of English audio",
+        title: "Standard Assamese",
+        display_text: "Responsible driving keeps everyone safe.",
+        actual_text: "ৰাস্তাৰ ভুল দিশত গাড়ী চলোৱা শিক্ষিত লোকসকলৰ ওপৰত মোৰ বহুত খং উঠে।",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'bn',
+    name: 'Bengali',
+    scriptLabel: 'বাংলা',
+    demos: [
+      {
+        title: "Standard Bengali",
+        display_text: "We want to learn about Madhubani painting.",
+        actual_text: "এটা খুবই উৎসাহজনক। আমরা মধুবনী চিত্রকলা নিয়েও কিছু জানতে চাই।",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'brx',
+    name: 'Bodo',
+    scriptLabel: 'बरʼ',
+    demos: [
+      {
+        title: "Standard Bodo",
+        display_text: "The hotel charged us differently than expected.",
+        actual_text: "बे ह'टेलाव जोंनिफ्राय गुबुन-गुबुन बेसेन लानाय जादोंमोन, जायनि जाहोनाव जों जोंनि ह'टेलनि सइसखौ लाना दुखु जादोंमोन।",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'doi',
+    name: 'Dogri',
+    scriptLabel: 'डोगरी',
+    demos: [
+      {
+        title: "Standard Dogri",
+        display_text: "Can I use my app to log in to the portal?",
+        actual_text: "क्या में अपने ऐम्मपिन दा इस्तेमाल करियै कोविन पोर्टल च लाग इन करी सकनीं ?",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'en',
+    name: 'Indian English',
+    scriptLabel: 'Indian English',
+    demos: [
+      {
+        title: "Standard Indian English",
+        display_text: "Ask her to bring these things with her from the store.",
+        actual_text: "Ask her to bring these things with her from the store.",
         type: "Normal"
       },
       {
@@ -100,97 +152,34 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     ]
   },
   {
-    id: 'hi',
-    name: 'Hindi',
-    scriptLabel: 'हिन्दी',
-    demos: [
-      {
-        title: "Standard Hindi",
-        display_text: "BharatGen is building AI for Indian languages.",
-        actual_text: "भारतजेन भारतीय भाषाओं के लिए एआई बना रहा है।",
-        type: "Normal"
-      },
-      {
-        title: "Code-Mixed Hindi",
-        display_text: "India's diversity, AI's power.",
-        actual_text: "भारत की विविधता, एआई की ताकत।",
-        type: "Code-Mix"
-      }
-    ]
-  },
-  {
-    id: 'mr',
-    name: 'Marathi',
-    scriptLabel: 'मराठी',
-    demos: [
-      {
-        title: "Standard Marathi",
-        display_text: "Our language is not just words, it is our identity.",
-        actual_text: "आपली भाषा म्हणजे केवळ शब्द नाहीत, ती आपली ओळख आहे.",
-        type: "Normal"
-      },
-      {
-        title: "Code-Mixed Marathi",
-        display_text: "AI speaking in our language.",
-        actual_text: "आपल्या भाषेत बोलणारी एआय.",
-        type: "Code-Mix"
-      }
-    ]
-  },
-  {
     id: 'gu',
     name: 'Gujarati',
     scriptLabel: 'ગુજરાતી',
     demos: [
       {
         title: "Standard Gujarati",
-        display_text: "BharatGen puts Indian languages at the center of AI.",
-        actual_text: "ભારતજેન ભારતીય ભાષાઓને એઆઈના કેન્દ્રમાં મૂકે છે.",
+        display_text: "I did not expect the bank to be open this Saturday.",
+        actual_text: "મને આ શનિવારે બેંક ખુલ્લી રહેવાની અપેક્ષા નહોતી અને કર્મચારીઓને કામ કરતા જોઈને હું આશ્ચર્યચકિત થઈ ગયો હતો.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'hi',
+    name: 'Hindi',
+    scriptLabel: 'हिन्दी',
+    demos: [
+      {
+        title: "Standard Hindi",
+        display_text: "The oxen did not work there even for a day.",
+        actual_text: "बोली कैसे नमकहराम बैल हैं कि एक दिन भी वहाँ काम न किया।",
         type: "Normal"
       },
       {
-        title: "Code-Mixed Gujarati",
-        display_text: "Building AI with Indian Languages is a future-ready idea.",
-        actual_text: "ઇન્ડિયન લેન્ગ્વેજિસ સાથે એઆઈ બનાવવું એ ફ્યુચર-રેડી વિચાર છે.",
+        title: "Code-Mixed Hindi",
+        display_text: "India's diversity, AI's power.",
+        actual_text: "भारत की diversity, AI की ताकत।",
         type: "Code-Mix"
-      }
-    ]
-  },
-  {
-    id: 'bn',
-    name: 'Bengali',
-    scriptLabel: 'বাংলা',
-    demos: [
-      {
-        title: "Standard Bengali",
-        display_text: "India's identity lives in its languages.",
-        actual_text: "ভারতের পরিচয় তার ভাষার মধ্যেই বেঁচে থাকে।",
-        type: "Normal"
-      },
-      {
-        title: "Tech Focus",
-        display_text: "Technology works best when built on language.",
-        actual_text: "ভাষার উপর ভিত্তি করে তৈরি করা প্রযুক্তি সবার জন্য বেশি কার্যকর।",
-        type: "Normal"
-      }
-    ]
-  },
-  {
-    id: 'ta',
-    name: 'Tamil',
-    scriptLabel: 'தமிழ்',
-    demos: [
-      {
-        title: "Standard Tamil",
-        display_text: "Since the weather was pleasant today, the evening walk was very enjoyable.",
-        actual_text: "இன்று வானிலை இனிமையாக இருந்ததால், மாலை நேர நடைப்பயணம் மிகவும் மகிழ்ச்சியாக இருந்தது.",
-        type: "Normal"
-      },
-      {
-        title: "About BharatGen",
-        display_text: "BharatGen works with the aim of bringing technology to people's daily lives.",
-        actual_text: "பாரத்ஜென் தொழில்நுட்பத்தை மனிதர்களின் தினசரி வாழ்க்கைக்கு பயனுள்ள வகையில் கொண்டு சேர்க்கும் நோக்கத்துடன் செயல்படுகிறது.",
-        type: "Normal"
       }
     ]
   },
@@ -201,8 +190,47 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     demos: [
       {
         title: "Standard Kannada",
-        display_text: "BharatGen is building AI for Indian languages.",
-        actual_text: "ಆದರೆ ಈ ಸಣ್ಣ ಮಳಿಗೆಗಳು ಕ್ಯಾಂಡಿ, ಸಣ್ಣ ಆಟಿಕೆಗಳು ಮತ್ತು ಇತರ ಹಬ್ಬದ ನಿಕ್ನಾಕ್ಸ್ಗಳಂತಹ ಸ್ಟಾಕಿಂಗ್ ಸ್ಟಫರ್ಗಳಿಗೆ ಉತ್ತಮ ಆಯ್ಕೆಯಾಗಬಲ್ಲವು.",
+        display_text: "Ancient Buddhist and Jain texts mention music.",
+        actual_text: "ಸಾಮಾನ್ಯ ಯುಗದ ಆರಂಭಿಕ ಅವಧಿಯ ಬೌದ್ಧ ಮತ್ತು ಜೈನ ಪಠ್ಯಗಳಲ್ಲಿಯೂ ಸಂಗೀತದ ಉಲ್ಲೇಖವಿದೆ.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'ks',
+    name: 'Kashmiri',
+    scriptLabel: 'کٲشُر',
+    demos: [
+      {
+        title: "Standard Kashmiri",
+        display_text: "International Mother Language Day is observed every year.",
+        actual_text: "بَین الاقوٲمی ماجہِ زؠو دۄہ چھُ اَکھ عالمی دۄہ یُس اکَوُہ فَرؤری، پرٛتھ ؤریہِ مَناونہٕ چُھ یِوان ۔",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'kok',
+    name: 'Konkani',
+    scriptLabel: 'कोंकणी',
+    demos: [
+      {
+        title: "Standard Konkani",
+        display_text: "There was no other newspaper like this for me.",
+        actual_text: "म्हजे खातीर सुनापरान्त हैं निखटें हेर दिसाळ्यांवरी आनीक एक दिसाळें नाशिल्लें.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'mai',
+    name: 'Maithili',
+    scriptLabel: 'मैथिली',
+    demos: [
+      {
+        title: "Standard Maithili",
+        display_text: "Sweet Falls is a waterfall in Shillong.",
+        actual_text: "शिलांगमे स्वीट फॉल्स नामक एकटा झरना छै, जकरा स्थानीय भाषामे क्षैद वेइटडेन सेहो कहल जाइत छै।",
         type: "Normal"
       }
     ]
@@ -214,47 +242,47 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     demos: [
       {
         title: "Standard Malayalam",
-        display_text: "Technology should feel natural in every language.",
-        actual_text: "അവിടുത്തെ സൗകര്യങ്ങളൊക്കെ എന്നെ നന്നായി ആകർഷിച്ചു.",
+        display_text: "Anees Bazmee's hit comedy followed Kapoor that year.",
+        actual_text: "അനീസ് ബാസ്മിയുടെ സൂപ്പർഹിറ്റ് കോമഡി 'നോ എൻട്രി' ആ വർഷം കപൂറിനെ പിന്തുടർന്നു.",
         type: "Normal"
       }
     ]
   },
   {
-    id: 'te',
-    name: 'Telugu',
-    scriptLabel: 'తెలుగు',
+    id: 'mni',
+    name: 'Manipuri',
+    scriptLabel: 'ꯃꯩꯇꯩꯂꯣꯟ',
     demos: [
       {
-        title: "Standard Telugu",
-        display_text: "AI should sound natural in our language.",
-        actual_text: "నా పీహెచ్డీ ప్రోగ్రామ్ అంచనాలు  నన్ను కొంచెం  భయపెడుతున్నాయి.",
+        title: "Standard Manipuri",
+        display_text: "Mirabai Chanu remains a major hope for the Indian team.",
+        actual_text: "ꯍꯥꯟꯅꯒꯤ ꯋꯥꯔꯜ ꯆꯦꯝꯄꯤꯌꯟ ꯃꯤꯔꯥꯕꯥꯏ ꯆꯅꯨꯅ ꯚꯥꯔꯠ ꯇꯤꯝꯒꯤ ꯑꯆꯧꯕ ꯑꯁꯥ ꯑꯣꯏꯔꯤ ꯫",
         type: "Normal"
       }
     ]
   },
   {
-    id: 'ur',
-    name: 'Urdu',
-    scriptLabel: 'اردو',
+    id: 'mr',
+    name: 'Marathi',
+    scriptLabel: 'मराठी',
     demos: [
       {
-        title: "Standard Urdu",
-        display_text: "BharatGen gives voice to every language.",
-        actual_text: "ہماچل ایکسپریس",
+        title: "Standard Marathi",
+        display_text: "Khangkhui Cave is a natural limestone cave.",
+        actual_text: "खांगखुईचे लेणे ही उखरुल जिल्ह्यातील चुनखडीची एक नैसर्गिक गुंफा आहे.",
         type: "Normal"
       }
     ]
   },
   {
-    id: 'sa',
-    name: 'Sanskrit',
-    scriptLabel: 'संस्कृतम्',
+    id: 'ne',
+    name: 'Nepali',
+    scriptLabel: 'नेपाली',
     demos: [
       {
-        title: "Standard Sanskrit",
-        display_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
-        actual_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
+        title: "Standard Nepali",
+        display_text: "Try this when the road is clear and beautiful.",
+        actual_text: "तपाईँले यो कोसिस गर्नुपर्छ, जब बाटो खाली अनि सुन्दर हुन्छ त्यति बेला शान्त महसुस हुन्छ।",
         type: "Normal"
       }
     ]
@@ -262,12 +290,12 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
   {
     id: 'or',
     name: 'Odia',
-    scriptLabel: 'ଓଡିଆ',
+    scriptLabel: 'ଓଡ଼ିଆ',
     demos: [
       {
         title: "Standard Odia",
-        display_text: "Language is identity.",
-        actual_text: "ନିଜର ସାଧୁତା ଯୋଗୁ ସେ ଉଭୟ ଇଉରୋପୀୟ ଓ ନେଟିଭମାନଙ୍କ ଦ୍ୱାରା ସର୍ବତୋଭାବେ ସମ୍ମାନିତ।",
+        display_text: "What should we do if the child refuses to report the problem?",
+        actual_text: "ଯଦି ପିଲାଟି ସମସ୍ୟାଟିକୁ ରିପୋର୍ଟ କରିବାକୁ ନାରାଜ ତେବେ ଆମେ କ'ଣ କରିବା?",
         type: "Normal"
       }
     ]
@@ -279,8 +307,86 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     demos: [
       {
         title: "Standard Punjabi",
-        display_text: "BharatGen brings AI to every language.",
-        actual_text: "ਮੈਂ ਸੱਚੇ ਦਿਲੋਂ ਸਹੁੰ ਖਾਂਦਾ ਹਾਂ ਕਿ ਮੈਂ ਰਾਸ਼ਟਰ ਦੀ ਏਕਤਾ, ਅਖੰਡਤਾ ਅਤੇ ਸੁਰੱਖਿਆ ਨੂੰ ਬਣਾਈ ਰੱਖਣ ਲਈ ਆਪਣੇ ਆਪ ਨੂੰ ਸਮਰਪਿਤ ਕਰਦਾ ਹਾਂ ਅਤੇ ਇਸ ਸੰਦੇਸ਼ ਨੂੰ ਆਪਣੇ ਸਾਥੀ ਦੇਸ਼ਵਾਸੀਆਂ ਵਿੱਚ ਫੈਲਾਉਣ ਲਈ ਸਖ਼ਤ ਮਿਹਨਤ ਕਰਾਂਗਾ।",
+        display_text: "A star of the silent era shone brightly.",
+        actual_text: "ਫ਼ਿਲਮਾਂ  ਦਿਓ ਉਸ ਖਾਮੋਸ਼ ਯੁੱਗ ਦੀ ਡੋਲਵੋਰਸ ਕਾਸਟੈਲਵੋ ਇਕ ਜਗ-ਮਗਾਂਦੀ ਤਾਰਿਕਾ ਸੀ.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'sa',
+    name: 'Sanskrit',
+    scriptLabel: 'संस्कृतम्',
+    demos: [
+      {
+        title: "Standard Sanskrit",
+        display_text: "Kartik saw his strong wrestling opponent shaking.",
+        actual_text: "कार्तिकः स्वस्य प्रबलं मल्लयुद्धप्रतिद्वन्द्विनम् कम्पनेन अपश्यत्।",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'sat',
+    name: 'Santali',
+    scriptLabel: 'ᱥᱟᱱᱛᱟᱲᱤ',
+    demos: [
+      {
+        title: "Standard Santali",
+        display_text: "A Santali sample sentence for the model.",
+        actual_text: "ᱤᱧ ᱫᱚ ᱵᱷᱟᱲᱩᱢᱵᱷᱟᱜ ᱞᱤᱱᱟᱹᱧ ! ᱚᱱᱟ ᱫᱟᱱ ᱫᱚ ᱱᱚᱝᱠᱟᱱ ᱡᱟᱦᱟᱱᱟᱜ ᱫᱚ ᱵᱟᱝ ᱠᱟᱱᱟ ᱡᱟᱦᱟ ᱫᱚ ᱟᱵᱚ ᱚᱱᱟ ᱛᱟᱭᱚᱢ ᱛᱮᱵᱚᱱ ᱧᱟᱢ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'sd',
+    name: 'Sindhi',
+    scriptLabel: 'سنڌي',
+    demos: [
+      {
+        title: "Standard Sindhi",
+        display_text: "A Sindhi sample sentence for the model.",
+        actual_text: "वाधूमल हिनजो न रुगो पुराणो दोस्तु हो पर हिन बाज़ार में अचण खां पोइ ई हिनजी किस्मत चोट चढ़ी हुई।",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'ta',
+    name: 'Tamil',
+    scriptLabel: 'தமிழ்',
+    demos: [
+      {
+        title: "Standard Tamil",
+        display_text: "He thought he could catch her in four strides.",
+        actual_text: "திரும்பி ஓடிவந்து கொண்டிருந்த அவளை நாலே பாய்ச்சலில் பிடித்துவிடலாம் என்பதுதான் அவனுடைய உத்தேசம்.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'te',
+    name: 'Telugu',
+    scriptLabel: 'తెలుగు',
+    demos: [
+      {
+        title: "Standard Telugu",
+        display_text: "Tomorrow I am going out of town.",
+        actual_text: "రేపు నేను పట్టణం బయటికి వెళ్తున్నాను, మత ఘర్షణల గురించి ఆందోళనగా ఉంది.",
+        type: "Normal"
+      }
+    ]
+  },
+  {
+    id: 'ur',
+    name: 'Urdu',
+    scriptLabel: 'اردو',
+    demos: [
+      {
+        title: "Standard Urdu",
+        display_text: "I feel growing concern about GST policy changes.",
+        actual_text: "مجھے جی ایس ٹی پالیسی میں تبدیلی کے ممکنہ اثر کے بارے میں بڑھتے خوف کا احساس ہو رہا ہے۔",
         type: "Normal"
       }
     ]

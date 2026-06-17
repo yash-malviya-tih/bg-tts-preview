@@ -7,6 +7,25 @@ export interface TTSRequest {
   language?: string;
   nfeStep?: number;
   speed?: number;
+  genTextIsIpa?: boolean;
+  checkpointId?: string;
+}
+
+export interface TTSCheckpoint {
+  id: string;
+  name: string;
+  run: string;
+  file: string;
+  checkpoint: string;
+  vocab: string;
+  config: string;
+  tokenizer: string;
+  is_default: boolean;
+}
+
+export interface TTSGenerationResult {
+  audioUrl: string;
+  rtf: number | null;
 }
 
 export interface LanguageDemo {
@@ -42,5 +61,6 @@ export interface BharatGenVoice {
   languageName: string;
   region: string;
   audioUrl: string;
+  audioPath?: string;
   refText: string;
 }

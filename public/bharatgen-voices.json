@@ -1,119 +1,232 @@
 [
   {
-    "id": "bg-hi-aarav",
-    "name": "Aarav",
-    "languageId": "hi",
-    "languageName": "Hindi",
+    "id": "as",
+    "name": "Assamese",
+    "languageId": "as",
+    "languageName": "Assamese",
     "region": "India",
-    "audioUrl": "/voices/bg-hi.wav",
-    "refText": "पूरी हावडा एक्सप्रेस"
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/assamese/train/audios/Assamese_train_18240.wav",
+    "refText": "ৰাস্তাৰ ভুল দিশত গাড়ী চলোৱা শিক্ষিত লোকসকলৰ ওপৰত মোৰ বহুত খং উঠে।",
+    "audioUrl": "/api/tts/reference/as"
   },
   {
-    "id": "bg-bn-sayan",
-    "name": "Sayan",
+    "id": "bn",
+    "name": "Bengali",
     "languageId": "bn",
     "languageName": "Bengali",
     "region": "India",
-    "audioUrl": "/voices/bg-bn2.wav",
-    "refText": "আমাকে সাবলম্ম্বন পেনশন স্কিম সম্পর্কে কয়েকটা ব্যাপার বলতে পারবে, প্লিজ?"
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/bengali/train/audios/Bengali_train_19166.wav",
+    "refText": "এটা খুবই উৎসাহজনক। আমি মধুবনী চিত্রকলা নিয়েও কিছু জানতে চাই।",
+    "audioUrl": "/api/tts/reference/bn"
   },
   {
-    "id": "bg-gu-darshan",
-    "name": "Darshan",
+    "id": "brx",
+    "name": "Bodo",
+    "languageId": "brx",
+    "languageName": "Bodo",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/bodo/train/audios/Bodo_train_3505.wav",
+    "refText": "बे ह'टेलाव जोंनिफ्राय गुबुन-गुबुन बेसेन लानाय जादोंमोन, जायनि जाहोनाव जों जोंनि ह'टेलनि सइसखौ लाना दुखु जादोंमोन।",
+    "audioUrl": "/api/tts/reference/brx"
+  },
+  {
+    "id": "doi",
+    "name": "Dogri",
+    "languageId": "doi",
+    "languageName": "Dogri",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/dogri/train/audios/Dogri_train_18478.wav",
+    "refText": "क्या में अपने ऐम्मपिन दा इस्तेमाल करियै कोविन पोर्टल च लाग इन करी सकनीं ?",
+    "audioUrl": "/api/tts/reference/doi"
+  },
+  {
+    "id": "gu",
+    "name": "Gujarati",
     "languageId": "gu",
     "languageName": "Gujarati",
     "region": "India",
-    "audioUrl": "/voices/bg-gu.wav",
-    "refText": "આપણે ખરેખર તો કોઈ બીજાને ના લાવવા જોઈએ"
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/gujarati/valid/audios/Gujarati_train_4030.wav",
+    "refText": "મને આ શનિવારે બેંક ખુલ્લી રહેવાની અપેક્ષા નહોતી અને કર્મચારીઓને કામ કરતા જોઈને હું આશ્ચર્યચકિત થઈ ગયો હતો.",
+    "audioUrl": "/api/tts/reference/gu"
   },
   {
-    "id": "bg-kn-kiran",
-    "name": "Kiran",
+    "id": "hi",
+    "name": "Hindi",
+    "languageId": "hi",
+    "languageName": "Hindi",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/hindi/train/audios/Hindi_train_8072.wav",
+    "refText": "बोली कैसे नमकहराम बैल हैं कि एक दिन भी वहाँ काम न किया।",
+    "audioUrl": "/api/tts/reference/hi"
+  },
+  {
+    "id": "kn",
+    "name": "Kannada",
     "languageId": "kn",
     "languageName": "Kannada",
     "region": "India",
-    "audioUrl": "/voices/bg-kn.wav",
-    "refText": "ಆದರೆ ಇಸನ್ನ ಮಳಿಗೆಗಳು, ಕೇಂಡಿ, ಸನ್ನ ಆಟಿಕೆಗಳು, ಮತ್ತು ಇತರ ಹಬ್ಬದ ನಿಕ್ನಾಕ್ಸ್ಗಳಂತಹ ಸ್ಟೋಕಿಂಗ್ ಸ್ಟಾಫರ್ಗಳಿಗೆ ಉತ್ತಮ ಆಯ್ಕೆ ಆಗಬಲ್ಲವು."
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/kannada/train/audios/Kannada_train_26849.wav",
+    "refText": "ಸಾಮಾನ್ಯ ಯುಗದ ಆರಂಭಿಕ ಅವಧಿಯ ಬೌದ್ಧ ಮತ್ತು ಜೈನ ಪಠ್ಯಗಳಲ್ಲಿಯೂ ಸಂಗೀತದ ಉಲ್ಲೇಖವಿದೆ.",
+    "audioUrl": "/api/tts/reference/kn"
   },
   {
-    "id": "bg-ml-arun",
-    "name": "Arun",
+    "id": "ks",
+    "name": "Kashmiri",
+    "languageId": "ks",
+    "languageName": "Kashmiri",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/kashmiri/train/audios/Kashmiri_train_8543.wav",
+    "refText": "بَین الاقوٲمی ماجہِ زؠو دۄہ چھُ اَکھ عالمی دۄہ یُس اکَوُہ فَرؤری، پرٛتھ ؤریہِ مَناونہٕ چُھ یِوان ۔",
+    "audioUrl": "/api/tts/reference/ks"
+  },
+  {
+    "id": "kok",
+    "name": "Konkani",
+    "languageId": "kok",
+    "languageName": "Konkani",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/konkani/train/audios/Konkani_train_17345.wav",
+    "refText": "म्हजे खातीर सुनापरान्त हैं निखटें हेर दिसाळ्यांवरी आनीक एक दिसाळें नाशिल्लें.",
+    "audioUrl": "/api/tts/reference/kok"
+  },
+  {
+    "id": "mai",
+    "name": "Maithili",
+    "languageId": "mai",
+    "languageName": "Maithili",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/maithili/train/audios/Maithili_train_17139.wav",
+    "refText": "शिलांगमे स्वीट फॉल्स नामक एकटा झरना छै, जकरा स्थानीय भाषामे क्षैद वेइटडेन सेहो कहल जाइत छै।",
+    "audioUrl": "/api/tts/reference/mai"
+  },
+  {
+    "id": "ml",
+    "name": "Malayalam",
     "languageId": "ml",
     "languageName": "Malayalam",
     "region": "India",
-    "audioUrl": "/voices/bg-ml.wav",
-    "refText": "ਅਵੁਡੁ ਤੁ ਸਵੁਗਿਰੀਂਗੁ ਲੋਕੇ ਎ਨੁ ਨੰਨੈ ਆਗਰਸੀਚੁ."
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/malayalam/train/audios/Malayalam_train_10658.wav",
+    "refText": "അനീസ് ബാസ്മിയുടെ സൂപ്പർഹിറ്റ് കോമഡി 'നോ എൻട്രി' ആ വർഷം കപൂറിനെ പിന്തുടർന്നു.",
+    "audioUrl": "/api/tts/reference/ml"
   },
   {
-    "id": "bg-te-raghav",
-    "name": "Raghav",
-    "languageId": "te",
-    "languageName": "Telugu",
+    "id": "mni",
+    "name": "Manipuri",
+    "languageId": "mni",
+    "languageName": "Manipuri",
     "region": "India",
-    "audioUrl": "/voices/bg-te.wav",
-    "refText": "నా PhD ప్రోగ్రామ్ అంచునాలు నను కొంచుం భైప్పెడుతునై."
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/manipuri/test/audios/Manipuri_train_13442.wav",
+    "refText": "ꯍꯥꯟꯅꯒꯤ ꯋꯥꯔꯜ ꯆꯦꯝꯄꯤꯌꯟ ꯃꯤꯔꯥꯕꯥꯏ ꯆꯅꯨꯅ ꯚꯥꯔꯠ ꯇꯤꯝꯒꯤ ꯑꯆꯧꯕ ꯑꯁꯥ ꯑꯣꯏꯔꯤ ꯫",
+    "audioUrl": "/api/tts/reference/mni"
   },
   {
-    "id": "bg-ta-karthik",
-    "name": "Karthik",
-    "languageId": "ta",
-    "languageName": "Tamil",
-    "region": "India",
-    "audioUrl": "/voices/bg-ta.wav",
-    "refText": "இது அதிகார பரவலாக்கள் முறையானது உள்ளூர் சமுகங்களுக்கு வலிமை அளிப்பதோடு தொழில் முனைவோரை உக்குவிப்பதன் மூலம் நகர்ப்புரங்களுக்கு மக்கள் புலம் பயர்வதையும் குறைக்கிறது. இதுவே மேக்கின் இந்தியா திட்டத்தின் முக்கிய நோக்கமாகும்."
-  },
-  {
-    "id": "bg-en-vikram",
-    "name": "Sunita",
-    "languageId": "en",
-    "languageName": "English",
-    "region": "India",
-    "audioUrl": "/voices/bg-en.wav",
-    "refText": "Conferences are vital links to connect local manufacturers with global buyers."
-  },
-  {
-    "id": "bg-ur-zain",
-    "name": "Zain",
-    "languageId": "ur",
-    "languageName": "Urdu",
-    "region": "India",
-    "audioUrl": "/voices/bg-ur.wav",
-    "refText": "ہمارچل ایکسپریس"
-  },
-  {
-    "id": "bg-or-manoj",
-    "name": "Manoj",
-    "languageId": "or",
-    "languageName": "Odia",
-    "region": "India",
-    "audioUrl": "/voices/bg-or.wav",
-    "refText": "নিজ্র সাধোথা জকো সে উভয় যুরোপিয় ও নেটি঵ মানংক দ্বারা সর্বতো ভাবে সম্মানিতা।"
-  },
-  {
-    "id": "bg-pa-gurpreet",
-    "name": "Gurpreet",
-    "languageId": "pa",
-    "languageName": "Punjabi",
-    "region": "India",
-    "audioUrl": "/voices/bg-pa.wav",
-    "refText": "ਮੈ ਸਚੇ ਦੀਲੋ ਸੋਂ ਖਾਂਦਾ ਹਾਂ ਕੀ ਮੈ ਰਾਸਟਰ ਦੀ ਏਕਤਾ, ਅਖਾਣਡਤਾ ਅਤੇ ਸੁਰੱਖਿਆ ਨੂ ਬਣਾਈ ਰਖਨ ਲੈ ਅਪਨੇ ਆਪਨੂ ਸਮਰਪਿਤ ਕਰਦਾ ਹਾਂ ਅਤੇ ਇਸ ਸ"
-  },
-  {
-    "id": "bg-mr-omkar",
-    "name": "Omkar",
+    "id": "mr",
+    "name": "Marathi",
     "languageId": "mr",
     "languageName": "Marathi",
     "region": "India",
-    "audioUrl": "/voices/bg-mr-f.wav",
-    "refText": "गाडीचे इन्शुरन्स, ॲक्सेसरीज याचे सगळ्याचे वेगळे चार्जेस लागतात."
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/marathi/valid/audios/Marathi_train_12056.wav",
+    "refText": "खांगखुईचे लेणे ही उखरुल जिल्ह्यातील चुनखडीची एक नैसर्गिक गुंफा आहे.",
+    "audioUrl": "/api/tts/reference/mr"
   },
   {
-    "id": "bg-sa-sandhya",
-    "name": "Smruti",
+    "id": "ne",
+    "name": "Nepali",
+    "languageId": "ne",
+    "languageName": "Nepali",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/nepali/test/audios/Nepali_train_1129.wav",
+    "refText": "तपाईँले यो कोसिस गर्नुपर्छ, जब बाटो खाली अनि सुन्दर हुन्छ त्यति बेला शान्त महसुस हुन्छ।",
+    "audioUrl": "/api/tts/reference/ne"
+  },
+  {
+    "id": "or",
+    "name": "Odia",
+    "languageId": "or",
+    "languageName": "Odia",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/odia/train/audios/Odia_train_4531.wav",
+    "refText": "ଯଦି ପିଲାଟି ସମସ୍ୟାଟିକୁ ରିପୋର୍ଟ କରିବାକୁ ନାରାଜ ତେବେ ଆମେ କ'ଣ କରିବା?",
+    "audioUrl": "/api/tts/reference/or"
+  },
+  {
+    "id": "pa",
+    "name": "Punjabi",
+    "languageId": "pa",
+    "languageName": "Punjabi",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/punjabi/train/audios/Punjabi_train_27334.wav",
+    "refText": "ਫ਼ਿਲਮਾਂ  ਦਿਓ ਉਸ ਖਾਮੋਸ਼ ਯੁੱਗ ਦੀ ਡੋਲਵੋਰਸ ਕਾਸਟੈਲਵੋ ਇਕ ਜਗ-ਮਗਾਂਦੀ ਤਾਰਿਕਾ ਸੀ.",
+    "audioUrl": "/api/tts/reference/pa"
+  },
+  {
+    "id": "sa",
+    "name": "Sanskrit",
     "languageId": "sa",
     "languageName": "Sanskrit",
     "region": "India",
-    "audioUrl": "/voices/voice-sa.wav",
-    "refText": "संध्या समये आगत्य ते कार्यस्य आरम्भं करिष्यन्ति।"
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/sanskrit/test/audios/Sanskrit_train_738.wav",
+    "refText": "कार्तिकः स्वस्य प्रबलं मल्लयुद्धप्रतिद्वन्द्विनम् कम्पनेन अपश्यत्।",
+    "audioUrl": "/api/tts/reference/sa"
+  },
+  {
+    "id": "sat",
+    "name": "Santali",
+    "languageId": "sat",
+    "languageName": "Santali",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/santali/train/audios/Santali_train_11609.wav",
+    "refText": "ᱤᱧ ᱫᱚ ᱵᱷᱟᱲᱩᱢᱵᱷᱟᱜ ᱞᱤᱱᱟᱹᱧ ! ᱚᱱᱟ ᱫᱟᱱ ᱫᱚ ᱱᱚᱝᱠᱟᱱ ᱡᱟᱦᱟᱱᱟᱜ ᱫᱚ ᱵᱟᱝ ᱠᱟᱱᱟ ᱡᱟᱦᱟ ᱫᱚ ᱟᱵᱚ ᱚᱱᱟ ᱛᱟᱭᱚᱢ ᱛᱮᱵᱚᱱ ᱧᱟᱢ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱾",
+    "audioUrl": "/api/tts/reference/sat"
+  },
+  {
+    "id": "sd",
+    "name": "Sindhi",
+    "languageId": "sd",
+    "languageName": "Sindhi",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/sindhi/train/audios/Sindhi_train_15946.wav",
+    "refText": "वाधूमल हिनजो न रुगो पुराणो दोस्तु हो पर हिन बाज़ार में अचण खां पोइ ई हिनजी किस्मत चोट चढ़ी हुई।",
+    "audioUrl": "/api/tts/reference/sd"
+  },
+  {
+    "id": "ta",
+    "name": "Tamil",
+    "languageId": "ta",
+    "languageName": "Tamil",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/tamil/train/audios/Tamil_train_34467.wav",
+    "refText": "திரும்பி ஓடிவந்து கொண்டிருந்த அவளை நாலே பாய்ச்சலில் பிடித்துவிடலாம் என்பதுதான் அவனுடைய உத்தேசம்.",
+    "audioUrl": "/api/tts/reference/ta"
+  },
+  {
+    "id": "te",
+    "name": "Telugu",
+    "languageId": "te",
+    "languageName": "Telugu",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/telugu/train/audios/Telugu_train_24195.wav",
+    "refText": "రేపు నేను పట్టణం బయటికి వెళ్తున్నాను, మత ఘర్షణల గురించి ఆందోళనగా ఉంది.",
+    "audioUrl": "/api/tts/reference/te"
+  },
+  {
+    "id": "ur",
+    "name": "Urdu",
+    "languageId": "ur",
+    "languageName": "Urdu",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/rasa/rasa/urdu/train/audios/Urdu_train_25639.wav",
+    "refText": "مجھے جی ایس ٹی پالیسی میں تبدیلی کے ممکنہ اثر کے بارے میں بڑھتے خوف کا احساس ہو رہا ہے۔",
+    "audioUrl": "/api/tts/reference/ur"
+  },
+  {
+    "id": "en",
+    "name": "Indian English",
+    "languageId": "en",
+    "languageName": "Indian English",
+    "region": "India",
+    "audioPath": "/nfs/projects/DATA2/vctk/vctk/english/train/audios/p301_002.wav",
+    "refText": "Ask her to bring these things with her from the store.",
+    "audioUrl": "/api/tts/reference/en"
   }
 ]

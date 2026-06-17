@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
-  const ttsTarget = env.TTS_API_TARGET || 'https://voices.bharatgen.dev/api/tts';
+  const ttsTarget = env.TTS_API_TARGET || 'http://127.0.0.1:8003';
   const ttsApiKey = env.TTS_API_KEY;
   const whisperTarget = env.WHISPER_API_TARGET;
   const base = env.VITE_APP_BASE || '/sooktam/';
