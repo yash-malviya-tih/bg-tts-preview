@@ -55,21 +55,21 @@
   },
   {
     "id": "bg-ta-karthik",
-    "name": "Karthik",
+    "name": "kirti",
     "languageId": "ta",
     "languageName": "Tamil",
     "region": "India",
     "audioUrl": "/voices/bg-ta.wav",
-    "refText": "இது அதிகார பரவலாக்கள் முறையானது உள்ளூர் சமுகங்களுக்கு வலிமை அளிப்பதோடு தொழில் முனைவோரை உக்குவிப்பதன் மூலம் நகர்ப்புரங்களுக்கு மக்கள் புலம் பயர்வதையும் குறைக்கிறது. இதுவே மேக்கின் இந்தியா திட்டத்தின் முக்கிய நோக்கமாகும்."
+    "refText": "நான் இரண்டு குழந்தைகளை பிஸியாக வைத்திருக்க வேண்டும் என்ன செய்வது என்று சொல்லுங்கள்"
   },
   {
     "id": "bg-en-vikram",
-    "name": "Sunita",
+    "name": "Jayesh",
     "languageId": "en",
     "languageName": "English",
     "region": "India",
-    "audioUrl": "/voices/bg-en.wav",
-    "refText": "Conferences are vital links to connect local manufacturers with global buyers."
+    "audioUrl": "/voices/voice-en.wav",
+    "refText": "Some call me nature, others call me mother nature."
   },
   {
     "id": "bg-ur-zain",
@@ -78,7 +78,7 @@
     "languageName": "Urdu",
     "region": "India",
     "audioUrl": "/voices/bg-ur.wav",
-    "refText": "ہمارچل ایکسپریس"
+    "refText": "تو کیا آپ کالونی میں رہنے والوں کے لیے کچھ کھانا اور پانی لا سکتے ہیں۔"
   },
   {
     "id": "bg-or-manoj",
@@ -95,25 +95,16 @@
     "languageId": "pa",
     "languageName": "Punjabi",
     "region": "India",
-    "audioUrl": "/voices/bg-pa.wav",
-    "refText": "ਮੈ ਸਚੇ ਦੀਲੋ ਸੋਂ ਖਾਂਦਾ ਹਾਂ ਕੀ ਮੈ ਰਾਸਟਰ ਦੀ ਏਕਤਾ, ਅਖਾਣਡਤਾ ਅਤੇ ਸੁਰੱਖਿਆ ਨੂ ਬਣਾਈ ਰਖਨ ਲੈ ਅਪਨੇ ਆਪਨੂ ਸਮਰਪਿਤ ਕਰਦਾ ਹਾਂ ਅਤੇ ਇਸ ਸ"
+    "audioUrl": "/voices/Punjabi_000545.wav",
+    "refText": "ਪੰਜਾਬ ਯੂਪੀ ਬਿਹਾਰ ਹਰਿਆਣਾ ਹਿਮਾਚਲ"
   },
   {
     "id": "bg-mr-omkar",
-    "name": "Omkar",
+    "name": "Vanshika",
     "languageId": "mr",
     "languageName": "Marathi",
     "region": "India",
-    "audioUrl": "/voices/bg-mr-f.wav",
-    "refText": "गाडीचे इन्शुरन्स, ॲक्सेसरीज याचे सगळ्याचे वेगळे चार्जेस लागतात."
-  },
-  {
-    "id": "bg-sa-sandhya",
-    "name": "Smruti",
-    "languageId": "sa",
-    "languageName": "Sanskrit",
-    "region": "India",
-    "audioUrl": "/voices/voice-sa.wav",
-    "refText": "संध्या समये आगत्य ते कार्यस्य आरम्भं करिष्यन्ति।"
+    "audioUrl": "/voices/voice-mr.wav",
+    "refText": "यासाठी एखादं टूर पॅकेज सुचवाल का?"
   }
 ]

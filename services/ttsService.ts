@@ -2,8 +2,9 @@ import { API_URL } from '../constants';
 import { TTSRequest } from '../types';
 
 const LANGUAGE_MAP: Record<string, string> = {
-  en: 'english',
-  english: 'english',
+  en: 'indian_english',
+  english: 'indian_english',
+  indian_english: 'indian_english',
   hi: 'hindi',
   hindi: 'hindi',
   bn: 'bengali',
@@ -22,19 +23,11 @@ const LANGUAGE_MAP: Record<string, string> = {
   telugu: 'telugu',
   ur: 'urdu',
   urdu: 'urdu',
-  sa: 'sanskrit',
-  sanskrit: 'sanskrit',
   or: 'odia',
   odia: 'odia',
   oriya: 'odia',
   pa: 'punjabi',
   punjabi: 'punjabi',
-  zh: 'chinese',
-  chinese: 'chinese',
-  ja: 'japanese',
-  japanese: 'japanese',
-  ko: 'korean',
-  korean: 'korean',
 };
 
 const resolveLanguage = (language?: string) => {
@@ -43,22 +36,33 @@ const resolveLanguage = (language?: string) => {
   return LANGUAGE_MAP[normalized] || normalized;
 };
 
+const STATUS_GUIDANCE: Record<number, string> = {
+  413: 'Your reference audio or text is too large. Try a shorter sample or shorter text.',
+  415: 'Unsupported audio format. Please upload a .wav or .mp3 file.',
+  422: "The server couldn't process this input. Try different reference audio or text.",
+  429: 'Too many requests right now. Please wait a moment and try again.',
+  500: 'The voice generation service hit an error. Please try again.',
+  502: 'The voice generation service is temporarily unreachable. Please try again shortly.',
+  503: 'The voice generation service is temporarily unreachable. Please try again shortly.',
+  504: 'The request took too long. Try a shorter piece of text and try again.',
+};
+
 const buildErrorMessage = async (response: Response) => {
-  const prefix = 'API Error: ' + response.status;
+  const guidance = STATUS_GUIDANCE[response.status];
   const errorText = await response.text();
 
-  if (!errorText) return prefix;
-
-  try {
-    const parsed = JSON.parse(errorText) as { detail?: string };
-    if (parsed?.detail && typeof parsed.detail === 'string') {
-      return prefix + ' - ' + parsed.detail;
+  let detail = '';
+  if (errorText) {
+    try {
+      const parsed = JSON.parse(errorText) as { detail?: string };
+      detail = parsed?.detail && typeof parsed.detail === 'string' ? parsed.detail : errorText;
+    } catch {
+      detail = errorText;
     }
-  } catch {
-    // Ignore parsing errors and fall through to raw text.
   }
 
-  return prefix + ' - ' + errorText;
+  if (guidance) return detail ? `${guidance} (${detail})` : guidance;
+  return detail ? `Failed to generate speech: ${detail}` : `Failed to generate speech (error ${response.status}). Please try again.`;
 };
 
 export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
@@ -73,10 +77,15 @@ export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
     const audioName = payload.refAudio instanceof File ? payload.refAudio.name : 'reference.wav';
     formData.append('ref_audio', payload.refAudio, audioName);
 
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      body: formData,
-    });
+    let response: Response;
+    try {
+      response = await fetch(API_URL, {
+        method: 'POST',
+        body: formData,
+      });
+    } catch {
+      throw new Error('Voice generation service is unavailable. Check your connection and try again.');
+    }
 
     if (!response.ok) {
       throw new Error(await buildErrorMessage(response));
@@ -84,7 +93,7 @@ export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
 
     const audioBlob = await response.blob();
     if (!audioBlob.size) {
-      throw new Error('No audio data received from server');
+      throw new Error('The service returned no audio. Please try again, or try a different voice sample.');
     }
 
     return URL.createObjectURL(audioBlob);

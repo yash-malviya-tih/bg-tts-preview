@@ -6,7 +6,6 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   const ttsTarget = env.TTS_API_TARGET || 'https://voices.bharatgen.dev/api/tts';
   const ttsApiKey = env.TTS_API_KEY;
-  const whisperTarget = env.WHISPER_API_TARGET;
   const base = env.VITE_APP_BASE || '/sooktam/';
   const normalizedBase = base.startsWith('/') ? base : `/${base}`;
   const basePath = normalizedBase.endsWith('/') ? normalizedBase.slice(0, -1) : normalizedBase;
@@ -24,12 +23,6 @@ export default defineConfig(({ mode }) => {
           secure: false,
           headers: ttsApiKey ? { 'X-API-Key': ttsApiKey } : undefined,
           rewrite: (requestPath) => requestPath.replace(new RegExp(`^${basePath}/api/tts`), ''),
-        },
-        [`${basePath}/api/whisper`]: {
-          target: whisperTarget,
-          changeOrigin: true,
-          secure: false,
-          rewrite: (requestPath) => requestPath.replace(new RegExp(`^${basePath}/api/whisper`), '/transcribe'),
         },
       },
     },

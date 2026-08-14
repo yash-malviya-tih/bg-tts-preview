@@ -247,19 +247,6 @@ export const LANGUAGE_DEMOS: LanguageDemo[] = [
     ]
   },
   {
-    id: 'sa',
-    name: 'Sanskrit',
-    scriptLabel: 'संस्कृतम्',
-    demos: [
-      {
-        title: "Standard Sanskrit",
-        display_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
-        actual_text: "मन्त्री अपि सः एकस्मिन् उटजे निवसति स्म।",
-        type: "Normal"
-      }
-    ]
-  },
-  {
     id: 'or',
     name: 'Odia',
     scriptLabel: 'ଓଡିଆ',

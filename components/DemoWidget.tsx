@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Play, Pause, Loader2, FileAudio, Zap, Globe, ChevronDown, Check, X, RefreshCw } from 'lucide-react';
+import { Upload, Play, Pause, Loader2, FileAudio, Mic, Users, Globe, ChevronDown, Check, X, RefreshCw, Wand2 } from 'lucide-react';
 import { generateSpeech } from '../services/ttsService';
-import { transcribeAudio } from '../services/transcriptionService';
 import { LANGUAGE_DEMOS } from '../constants';
 import { BharatGenVoice } from '../types';
 import LogoVisualizer from './LogoVisualizer';
@@ -9,7 +8,7 @@ import LogoVisualizer from './LogoVisualizer';
 
 const DemoWidget: React.FC = () => {
   // State
-  const [activeTab, setActiveTab] = useState<'clone' | 'bharatgen'>('clone');
+  const [activeTab, setActiveTab] = useState<'clone' | 'bharatgen'>('bharatgen');
   const [selectedLang, setSelectedLang] = useState(LANGUAGE_DEMOS[0]);
   const [selectedDemoIdx, setSelectedDemoIdx] = useState(0);
   const [cloneSelectedLang, setCloneSelectedLang] = useState(LANGUAGE_DEMOS[0]);
@@ -25,12 +24,10 @@ const DemoWidget: React.FC = () => {
   const [bharatgenRefText, setBharatgenRefText] = useState('');
   const [genText, setGenText] = useState(LANGUAGE_DEMOS[0].demos[0].actual_text);
   const [isLoading, setIsLoading] = useState(false);
-  const [isTranscribing, setIsTranscribing] = useState(false);
   const [generatedAudioUrl, setGeneratedAudioUrl] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [transcriptionError, setTranscriptionError] = useState<string | null>(null);
-  const [autoGeneratePending, setAutoGeneratePending] = useState(false);
   const [refPreviewUrl, setRefPreviewUrl] = useState<string | null>(null);
   const [isRefPlaying, setIsRefPlaying] = useState(false);
   const [generationMs, setGenerationMs] = useState<number | null>(null);
@@ -60,39 +57,36 @@ const DemoWidget: React.FC = () => {
 
   const loadAudioAsFile = async (url: string, filename: string) => {
     const resolvedUrl = resolveAssetUrl(url);
-    const response = await fetch(resolvedUrl);
+    let response: Response;
+    try {
+      response = await fetch(resolvedUrl);
+    } catch {
+      throw new Error("Couldn't reach the server to load this voice. Check your connection and try again.");
+    }
     if (!response.ok) {
-      throw new Error(`Audio not found (${response.status})`);
+      throw new Error("Couldn't load this voice's audio sample. Try selecting a different voice.");
     }
     const blob = await response.blob();
     return new File([blob], filename, { type: blob.type || 'audio/wav' });
   };
 
   useEffect(() => {
-    if (activeTab !== 'clone') return;
-    setCloneSelectedLang(selectedLang);
-    setCloneSelectedDemoIdx(selectedDemoIdx);
-  }, [activeTab, selectedLang, selectedDemoIdx]);
-
-  useEffect(() => {
-    if (activeTab !== 'clone') return;
-    setSelectedLang(cloneSelectedLang);
-    setSelectedDemoIdx(cloneSelectedDemoIdx);
-  }, [activeTab, cloneSelectedLang, cloneSelectedDemoIdx]);
-
-
-  useEffect(() => {
     let isActive = true;
     const loadVoices = async () => {
       try {
         setBharatgenError(null);
-        const response = await fetch(resolveAssetUrl('/bharatgen-voices.json'));
+        let response: Response;
+        try {
+          response = await fetch(resolveAssetUrl('/bharatgen-voices.json'));
+        } catch {
+          throw new Error("Couldn't reach the server to load BharatGen voices. Check your connection and refresh the page.");
+        }
         if (!response.ok) {
-          throw new Error(`Failed to load voices (${response.status})`);
+          throw new Error('Could not load BharatGen voices right now. Please refresh the page.');
         }
         const data = await response.json();
         if (!Array.isArray(data)) {
-          throw new Error('Invalid voices data');
+          throw new Error('BharatGen voices are temporarily unavailable. Please refresh the page.');
         }
         if (!isActive) return;
         setBharatgenVoices(data as BharatGenVoice[]);
@@ -101,7 +95,7 @@ const DemoWidget: React.FC = () => {
         }
       } catch (err: any) {
         if (!isActive) return;
-        setBharatgenError(err?.message || 'Failed to load BharatGen voices');
+        setBharatgenError(err?.message || 'Could not load BharatGen voices right now. Please refresh the page.');
       }
     };
     loadVoices();
@@ -125,7 +119,7 @@ const DemoWidget: React.FC = () => {
         setBharatgenRefFile(file);
       } catch (err: any) {
         if (!isActive) return;
-        setBharatgenError(err?.message || 'Failed to load voice');
+        setBharatgenError(err?.message || "Couldn't load this voice. Try selecting a different one.");
       }
     };
     loadVoice();
@@ -146,10 +140,10 @@ const DemoWidget: React.FC = () => {
   // Auto-play when audio is generated
   useEffect(() => {
     if (generatedAudioUrl && audioRef.current) {
-        audioRef.current.play().catch(() => {
-            // Auto-play might be blocked by browser
-        });
-        setIsPlaying(true);
+        setAutoplayBlocked(false);
+        audioRef.current.play()
+          .then(() => setIsPlaying(true))
+          .catch(() => setAutoplayBlocked(true));
     }
   }, [generatedAudioUrl]);
 
@@ -167,15 +161,6 @@ const DemoWidget: React.FC = () => {
   }, [activeRefFile]);
 
   useEffect(() => {
-    if (!autoGeneratePending) return;
-    if (isTranscribing || isLoading) return;
-    if (activeTab !== 'clone') return;
-    if (!activeRefFile || !activeRefText.trim()) return;
-    setAutoGeneratePending(false);
-    handleGenerate();
-  }, [autoGeneratePending, isTranscribing, isLoading, activeRefFile, activeRefText, activeTab]);
-
-  useEffect(() => {
     if (!isLoading) return;
     const start = generateStartRef.current ?? performance.now();
     generateStartRef.current = start;
@@ -185,47 +170,47 @@ const DemoWidget: React.FC = () => {
     return () => window.clearInterval(id);
   }, [isLoading]);
 
+  const MAX_UPLOAD_MB = 20;
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+
+      if (!['.wav', '.mp3'].some((ext) => file.name.toLowerCase().endsWith(ext))) {
+        setError('Please upload a .wav or .mp3 audio file.');
+        e.target.value = '';
+        return;
+      }
+      if (file.size === 0) {
+        setError('That file appears to be empty. Please choose a different audio file.');
+        e.target.value = '';
+        return;
+      }
+      if (file.size > MAX_UPLOAD_MB * 1024 * 1024) {
+        setError(`That file is too large. Please upload a sample under ${MAX_UPLOAD_MB}MB.`);
+        e.target.value = '';
+        return;
+      }
+
       setActiveTab('clone');
       setCloneRefFile(file);
       setCloneUploadFile(file);
       setCloneRefText('');
-      setTranscriptionError(null);
       setError(null);
-      setAutoGeneratePending(true);
-
-      setIsTranscribing(true);
-      transcribeAudio(file, selectedLang.id)
-        .then((text) => {
-          setCloneRefText(text || '');
-        })
-        .catch((err: any) => {
-          setTranscriptionError(err?.message || 'Transcription failed');
-          setAutoGeneratePending(false);
-        })
-        .finally(() => {
-          setIsTranscribing(false);
-        });
     }
   };
 
   const handleGenerate = async () => {
-    if (activeTab === 'clone' && isTranscribing) {
-        setError("Transcription in progress");
-        return;
-    }
     if (!activeRefFile) {
-        setError(activeTab === 'bharatgen' ? "Select a BharatGen voice first" : "Upload a voice sample first");
+        setError(activeTab === 'bharatgen' ? "Select a BharatGen voice first." : "Upload a voice sample to clone first.");
         return;
     }
     if (!activeRefText.trim()) {
-        setError("Reference text is required");
+        setError("Add reference text so we can match the voice's style.");
         return;
     }
     if (!genText.trim()) {
-        setError("Enter text to generate");
+        setError("Type something in the text box to generate speech.");
         return;
     }
 
@@ -252,7 +237,7 @@ const DemoWidget: React.FC = () => {
         setGenerationMs(performance.now() - generateStartRef.current);
       }
     } catch (err: any) {
-      setError(err.message || "Failed to generate speech.");
+      setError(err.message || "Something went wrong while generating speech. Please try again.");
       setIsLoading(false);
     } finally {
         if (!generatedAudioUrl) setIsLoading(false); // Only set loading false here if error, otherwise wait for audio load
@@ -264,6 +249,7 @@ const DemoWidget: React.FC = () => {
 
   const togglePlay = () => {
     if (!audioRef.current || !generatedAudioUrl) return;
+    setAutoplayBlocked(false);
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -296,25 +282,34 @@ const DemoWidget: React.FC = () => {
   const handleTabChange = (tab: 'clone' | 'bharatgen') => {
     if (tab === activeTab) return;
     stopPlayback();
+    if (tab === 'clone') {
+      setSelectedLang(cloneSelectedLang);
+      setSelectedDemoIdx(cloneSelectedDemoIdx);
+    }
     setActiveTab(tab);
     setError(null);
-    setTranscriptionError(null);
     setIsLangOpen(false);
     setIsBharatgenOpen(false);
-    setAutoGeneratePending(false);
   };
 
-  const isGenerateDisabled =
-    isLoading || (activeTab === 'clone' && isTranscribing) || !activeRefFile;
+  const isGenerateDisabled = isLoading || !activeRefFile;
+
+  const generateHint = (() => {
+    if (isLoading) return null;
+    if (!activeRefFile) return activeTab === 'bharatgen' ? 'Select a voice to continue' : 'Upload a voice sample to continue';
+    if (!activeRefText.trim()) return 'Reference text is required';
+    if (!genText.trim()) return 'Enter text to generate';
+    return null;
+  })();
 
   return (
-    <div className="flex flex-col lg:flex-row h-full min-h-[600px] bg-white">
+    <div className="flex flex-col lg:flex-row h-full min-h-[490px] 2xl:min-h-[550px] bg-white">
         
       {/* --- LEFT COLUMN: INPUT CANVAS --- */}
-      <div className="flex-1 flex flex-col p-6 md:p-10 relative">
+      <div className="order-2 lg:order-1 flex-1 flex flex-col p-4 md:p-5 lg:p-6 2xl:p-7 relative">
         
         {/* Top Tabs */}
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-3">
             <button
                 onClick={() => handleTabChange('clone')}
                 className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
@@ -323,39 +318,67 @@ const DemoWidget: React.FC = () => {
                     : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-blue))]'
                 }`}
             >
-                <Zap size={14} className="text-[color:rgb(var(--brand-orange))] fill-[color:rgb(var(--brand-orange))]" />
+                <Mic size={14} className="text-[color:rgb(var(--brand-orange))]" />
                 Voice Cloning
             </button>
             <button
                 onClick={() => handleTabChange('bharatgen')}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
                   activeTab === 'bharatgen'
                     ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
                     : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
                 }`}
             >
+                <Users size={14} className="text-[color:rgb(var(--brand-blue))]" />
                 BharatGen Voices
             </button>
         </div>
 
         {/* Text Input Area */}
-        <div className="relative group">
+        <div className="relative group border border-slate-200 rounded-xl bg-slate-50/60 px-4 pt-3 pb-7 transition-colors focus-within:border-[color:rgb(var(--brand-blue)/0.5)] focus-within:ring-2 focus-within:ring-[color:rgb(var(--brand-blue)/0.15)]">
             <textarea
                 value={genText}
                 onChange={(e) => setGenText(e.target.value)}
                 placeholder="Type something here to generate speech..."
-                className="w-full h-[120px] md:h-[140px] lg:h-[150px] resize-none text-base md:text-lg font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed"
+                className="w-full h-[86px] md:h-[96px] lg:h-[108px] 2xl:h-[126px] resize-none text-base font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed"
                 maxLength={300}
                 spellCheck={false}
             />
             {/* Character Count */}
-            <div className="absolute bottom-0 right-0 text-xs text-slate-300 font-medium">
+            <div className="absolute bottom-2 right-4 text-xs text-slate-300 font-medium">
                 {genText.length}/300
             </div>
         </div>
 
+        <div className="flex items-center justify-between gap-3 mt-3">
+            {isGenerateDisabled && generateHint ? (
+                <p className="text-[11px] text-slate-400 font-medium">{generateHint}</p>
+            ) : <span />}
+            <button
+                onClick={handleGenerate}
+                disabled={isGenerateDisabled}
+                className={`
+                    group relative px-3.5 py-1.5 rounded-full font-semibold text-sm text-white shadow-md transition-all duration-300
+                    flex items-center justify-center gap-2 overflow-hidden shrink-0
+                    ${isGenerateDisabled
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
+                        : 'bg-gradient-to-r from-[color:rgb(var(--brand-orange))] to-[color:rgb(var(--brand-blue))] hover:scale-105 hover:shadow-[0_12px_24px_-12px_rgb(var(--brand-orange)/0.6)]'}
+                `}
+            >
+                {/* Gradient animation overlay */}
+                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+
+                {isLoading ? (
+                    <Loader2 className="animate-spin w-4 h-4" />
+                ) : (
+                    <Wand2 size={14} />
+                )}
+                <span>Generate Speech</span>
+            </button>
+        </div>
+
         {/* Visualizer */}
-        <div className="mt-12 mb-10 flex flex-col items-center justify-center gap-4">
+        <div className="mt-4 mb-3 2xl:mt-6 2xl:mb-4 flex flex-col items-center justify-center gap-3">
             <div className="relative flex items-center justify-center px-2 py-1 rounded-full">
                 <div
                     className="absolute inset-0 rounded-full blur-3xl opacity-70 pointer-events-none"
@@ -370,72 +393,50 @@ const DemoWidget: React.FC = () => {
         </div>
         </div>
 
-        {/* Bottom Action Bar */}
-        <div className="mt-8 pt-6 border-t border-slate-100">
-            <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6">
-                <div className="flex flex-col gap-2">
-                    {error ? (
-                        <div className="text-red-500 text-sm font-medium px-4 py-2 bg-red-50 rounded-lg animate-fade-in">
-                            {error}
-                        </div>
-                    ) : (
-                        <div className="text-slate-400 text-sm flex items-center gap-2">
-                           {generatedAudioUrl && <Check size={16} className="text-green-500" />}
-                           {isLoading
-                             ? "Generating audio..."
-                             : generatedAudioUrl
-                               ? "Audio generated successfully"
-                               : "Ready to generate"}
-                           {(isLoading || generatedAudioUrl) && generationMs !== null && (
-                             <span className="text-[11px] text-slate-400 flex items-center gap-1">
-                               ⚡ { (generationMs / 1000).toFixed(2) }s
-                             </span>
-                           )}
-                        </div>
-                    )}
-                    <div className="flex items-center gap-3">
-                        {generatedAudioUrl && (
-                            <button 
-                                onClick={togglePlay}
-                                className="px-5 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-colors flex items-center gap-2"
-                            >
-                                {isPlaying ? "Pause" : "Replay"}
-                            </button>
-                        )}
-                        {!generatedAudioUrl && !isLoading && (
-                             <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-                                Waiting for input
-                             </p>
-                        )}
+        {/* Status / Playback Bar */}
+        <div className="mt-3 pt-3 border-t border-slate-100">
+            <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
+                {error ? (
+                    <div className="text-red-500 text-sm font-medium px-4 py-2 bg-red-50 rounded-lg animate-fade-in">
+                        {error}
                     </div>
-                </div>
-
-                <button
-                    onClick={handleGenerate}
-                    disabled={isGenerateDisabled}
-                    className={`
-                        group relative px-8 py-4 rounded-full font-bold text-white shadow-lg transition-all duration-300
-                        flex items-center gap-3 overflow-hidden
-                        ${isGenerateDisabled 
-                            ? 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none' 
-                            : 'bg-gradient-to-r from-[color:rgb(var(--brand-orange))] to-[color:rgb(var(--brand-blue))] hover:scale-105 hover:shadow-[0_20px_40px_-20px_rgb(var(--brand-orange)/0.6)]'}
-                    `}
-                >
-                    {/* Gradient animation overlay */}
-                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                    
-                    {isLoading ? (
-                        <Loader2 className="animate-spin w-5 h-5" />
-                    ) : (
-                        <div className="bg-white rounded-full p-1">
-                             <Play size={12} className="text-[color:rgb(var(--brand-orange))] fill-[color:rgb(var(--brand-orange))] translate-x-0.5" />
-                        </div>
-                    )}
-                    <span>Generate Speech</span>
-                </button>
+                ) : (
+                    <div className="text-slate-400 text-sm flex items-center gap-2">
+                       {generatedAudioUrl && <Check size={16} className="text-green-500" />}
+                       {isLoading
+                         ? "Generating audio..."
+                         : generatedAudioUrl
+                           ? (autoplayBlocked ? "Audio ready — tap Replay to listen" : "Audio generated successfully")
+                           : "Ready to generate"}
+                       {(isLoading || generatedAudioUrl) && generationMs !== null && (
+                         <span className="text-[11px] text-slate-400 flex items-center gap-1">
+                           ⚡ { (generationMs / 1000).toFixed(2) }s
+                         </span>
+                       )}
+                    </div>
+                )}
+                {generatedAudioUrl && (
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={togglePlay}
+                            className="px-5 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition-colors flex items-center gap-2"
+                        >
+                            {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+                            {isPlaying ? "Pause" : "Replay"}
+                        </button>
+                        <button
+                            onClick={handleGenerate}
+                            disabled={isGenerateDisabled}
+                            className="px-5 py-2 rounded-full border border-slate-200 hover:border-[color:rgb(var(--brand-orange))] text-slate-600 hover:text-[color:rgb(var(--brand-orange))] font-semibold text-sm transition-colors flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                        >
+                            <Wand2 size={14} />
+                            Generate again
+                        </button>
+                    </div>
+                )}
             </div>
 
-            <audio 
+            <audio
                 ref={audioRef}
                 src={generatedAudioUrl || undefined}
                 onPlay={() => setIsPlaying(true)}
@@ -445,7 +446,7 @@ const DemoWidget: React.FC = () => {
                 onLoadedData={onAudioLoadedData}
                 onError={() => {
                     setIsLoading(false);
-                    setError('Failed to load generated audio');
+                    setError('The generated audio could not be played. Please try generating again.');
                 }}
             />
             <audio
@@ -460,10 +461,10 @@ const DemoWidget: React.FC = () => {
 
 
       {/* --- RIGHT COLUMN: SETTINGS SIDEBAR --- */}
-      <div className="w-full lg:w-[400px] bg-slate-50/50 border-l border-slate-100 p-6 md:p-8 flex flex-col gap-8">
+      <div className="order-1 lg:order-2 w-full lg:w-[330px] 2xl:w-[370px] bg-slate-50/50 border-l border-slate-100 p-4 md:p-5 2xl:p-6 flex flex-col gap-4 2xl:gap-5">
 
         {/* Settings Form */}
-        <div className="space-y-6">
+        <div className="space-y-3">
             <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     {activeTab === 'clone' ? 'Reference Voice' : 'BharatGen Voices'}
@@ -477,16 +478,24 @@ const DemoWidget: React.FC = () => {
                             <div className="relative group">
                                 <input 
                                     type="file" 
-                                    accept=".wav"
+                                    accept=".wav,.mp3,audio/wav,audio/mpeg"
                                     onChange={handleFileChange}
                                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                 />
-                                <div className="h-20 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 group-hover:bg-[color:rgb(var(--brand-orange)/0.12)] group-hover:border-[color:rgb(var(--brand-orange)/0.4)] transition-all flex flex-col items-center justify-center gap-1">
+                                <div className="h-14 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 group-hover:bg-[color:rgb(var(--brand-orange)/0.12)] group-hover:border-[color:rgb(var(--brand-orange)/0.4)] transition-all flex flex-col items-center justify-center gap-1">
                                     <Upload className="text-slate-400 group-hover:text-[color:rgb(var(--brand-orange))] transition-colors" size={20} />
-                                    <span className="text-xs font-medium text-slate-500 group-hover:text-[color:rgb(var(--brand-orange))]">Upload Reference Voice (.wav)</span>
+                                    <span className="text-xs font-medium text-slate-500 group-hover:text-[color:rgb(var(--brand-orange))]">Upload Reference Voice (.wav, .mp3)</span>
                                 </div>
                             </div>
-                        ) : (
+                        ) : null}
+                        {!cloneUploadFile && (
+                            <p className="text-[10px] text-slate-400 leading-relaxed">
+                                Best results: 10–30s of clear, single-speaker audio. .wav or .mp3 only.
+                                <br />
+                                Used only to generate this preview — not stored.
+                            </p>
+                        )}
+                        {cloneUploadFile && (
                             <div className="p-3 bg-white border border-[color:rgb(var(--brand-orange)/0.4)] rounded-xl shadow-sm flex items-center justify-between gap-3">
                                  <div className="flex items-center gap-3">
                                      <div className="w-10 h-10 rounded-full bg-[color:rgb(var(--brand-orange)/0.16)] flex items-center justify-center text-[color:rgb(var(--brand-orange))]">
@@ -585,35 +594,21 @@ const DemoWidget: React.FC = () => {
                 </div>
             )}
 
-            {/* Transcript Input */}
-            <div className="pt-2">
-                <input 
-                    type="text"
-                    value={activeRefText}
-                    onChange={(e) => {
-                        if (activeTab === 'clone') {
-                            setCloneRefText(e.target.value);
-                        } else {
-                            setBharatgenRefText(e.target.value);
-                        }
-                    }}
-                    placeholder={activeTab === 'clone' ? 'Transcription will appear here...' : 'Reference transcript'}
-                    disabled={activeTab === 'clone' && isTranscribing}
-                    className="w-full text-xs bg-slate-100 border-none rounded-lg px-3 py-2 text-slate-600 focus:ring-1 focus:ring-[color:rgb(var(--brand-orange))] placeholder-slate-400 disabled:opacity-70"
-                />
-                <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 pl-1">
-                    <span>*Required for accurate cloning style matching</span>
-                    {activeTab === 'clone' && isTranscribing && (
-                        <span className="text-[color:rgb(var(--brand-blue))]">Transcribing with Whisper...</span>
-                    )}
-                    {activeTab === 'clone' && !isTranscribing && transcriptionError && (
-                        <span className="text-red-500">{transcriptionError}</span>
-                    )}
-                    {activeTab === 'bharatgen' && (
-                        <span>Preset transcript</span>
-                    )}
+            {/* Transcript Input (Clone tab only — BharatGen presets carry their own transcript internally) */}
+            {activeTab === 'clone' && (
+                <div className="pt-2">
+                    <input
+                        type="text"
+                        value={activeRefText}
+                        onChange={(e) => setCloneRefText(e.target.value)}
+                        placeholder="Type the reference audio's transcript here..."
+                        className="w-full text-xs bg-slate-100 border-none rounded-lg px-3 py-2 text-slate-600 focus:ring-1 focus:ring-[color:rgb(var(--brand-orange))] placeholder-slate-400"
+                    />
+                    <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400 pl-1">
+                        <span>*Required for accurate cloning style matching</span>
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* 2. Language Selector */}
             {activeTab === 'clone' ? (
@@ -646,6 +641,8 @@ const DemoWidget: React.FC = () => {
                                         onClick={() => {
                                             setSelectedLang(lang);
                                             setSelectedDemoIdx(0);
+                                            setCloneSelectedLang(lang);
+                                            setCloneSelectedDemoIdx(0);
                                             setIsLangOpen(false);
                                         }}
                                         className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${selectedLang.id === lang.id ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]' : 'hover:bg-slate-50 text-slate-600'}`}
@@ -663,7 +660,10 @@ const DemoWidget: React.FC = () => {
                         {selectedLang.demos.map((demo, idx) => (
                             <button
                                 key={idx}
-                                onClick={() => setSelectedDemoIdx(idx)}
+                                onClick={() => {
+                                    setSelectedDemoIdx(idx);
+                                    setCloneSelectedDemoIdx(idx);
+                                }}
                                 className={`
                                     text-[10px] font-medium px-2 py-1 rounded-md border transition-all flex items-center gap-1
                                     ${selectedDemoIdx === idx 
