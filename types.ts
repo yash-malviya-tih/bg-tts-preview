@@ -40,7 +40,15 @@ export interface BharatGenVoice {
   name: string;
   languageId: string;
   languageName: string;
-  region: string;
+  accentName?: string;
+  state: string;
+  stateId: string; // matches the `id` property in data/india-states.json
+  district: string;
+  coordinates: [number, number]; // [lng, lat] pin location on the accent map
   audioUrl: string;
   refText: string;
+  sampleGenText: string;
 }
+
+export const getAccentDisplayName = (voice: BharatGenVoice): string =>
+  voice.accentName || `${voice.district}, ${voice.state}`;

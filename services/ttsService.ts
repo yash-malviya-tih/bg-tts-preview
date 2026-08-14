@@ -2,9 +2,9 @@ import { API_URL } from '../constants';
 import { TTSRequest } from '../types';
 
 const LANGUAGE_MAP: Record<string, string> = {
-  en: 'indian_english',
-  english: 'indian_english',
-  indian_english: 'indian_english',
+  en: 'english',
+  english: 'english',
+  indian_english: 'english',
   hi: 'hindi',
   hindi: 'hindi',
   bn: 'bengali',
@@ -28,6 +28,31 @@ const LANGUAGE_MAP: Record<string, string> = {
   oriya: 'odia',
   pa: 'punjabi',
   punjabi: 'punjabi',
+  // NOTE: these 11 map to the remaining Eighth Schedule languages so requests are already
+  // shaped correctly once the backend supports them — support is NOT confirmed yet, so
+  // generation for these will likely fail server-side until that's verified.
+  as: 'assamese',
+  assamese: 'assamese',
+  brx: 'bodo',
+  bodo: 'bodo',
+  doi: 'dogri',
+  dogri: 'dogri',
+  ks: 'kashmiri',
+  kashmiri: 'kashmiri',
+  kok: 'konkani',
+  konkani: 'konkani',
+  mai: 'maithili',
+  maithili: 'maithili',
+  mni: 'manipuri',
+  manipuri: 'manipuri',
+  ne: 'nepali',
+  nepali: 'nepali',
+  sa: 'sanskrit',
+  sanskrit: 'sanskrit',
+  sat: 'santali',
+  santali: 'santali',
+  sd: 'sindhi',
+  sindhi: 'sindhi',
 };
 
 const resolveLanguage = (language?: string) => {
@@ -65,23 +90,46 @@ const buildErrorMessage = async (response: Response) => {
   return detail ? `Failed to generate speech: ${detail}` : `Failed to generate speech (error ${response.status}). Please try again.`;
 };
 
+// btoa() on a huge string built with spread/apply blows the call stack, and reference
+// uploads can be up to 20MB — so encode in chunks.
+const toBase64 = async (blob: Blob): Promise<string> => {
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  const CHUNK = 0x8000;
+  let binary = '';
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  }
+  return btoa(binary);
+};
+
+const base64ToBlob = (base64: string, type: string): Blob => {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i += 1) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return new Blob([bytes], { type });
+};
+
+/**
+ * POST /v1/tts?lang=<code> with JSON {ref_audio_base64, ref_text, gen_text}.
+ * Responds with JSON {audio_base64, ref_text_ipa, gen_text_ipa}.
+ */
 export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
   try {
-    const formData = new FormData();
-    formData.append('text', payload.text);
-    formData.append('ref_text', payload.refText);
-    formData.append('language', resolveLanguage(payload.language));
-    formData.append('nfe_step', String(payload.nfeStep ?? 32));
-    formData.append('speed', String(payload.speed ?? 1));
-
-    const audioName = payload.refAudio instanceof File ? payload.refAudio.name : 'reference.wav';
-    formData.append('ref_audio', payload.refAudio, audioName);
+    const refAudioBase64 = await toBase64(payload.refAudio);
+    const url = `${API_URL}?lang=${encodeURIComponent(resolveLanguage(payload.language))}`;
 
     let response: Response;
     try {
-      response = await fetch(API_URL, {
+      response = await fetch(url, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ref_audio_base64: refAudioBase64,
+          ref_text: payload.refText,
+          gen_text: payload.text,
+        }),
       });
     } catch {
       throw new Error('Voice generation service is unavailable. Check your connection and try again.');
@@ -91,12 +139,12 @@ export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
       throw new Error(await buildErrorMessage(response));
     }
 
-    const audioBlob = await response.blob();
-    if (!audioBlob.size) {
+    const result = (await response.json()) as { audio_base64?: string };
+    if (!result?.audio_base64) {
       throw new Error('The service returned no audio. Please try again, or try a different voice sample.');
     }
 
-    return URL.createObjectURL(audioBlob);
+    return URL.createObjectURL(base64ToBlob(result.audio_base64, 'audio/wav'));
   } catch (error) {
     console.error('TTS Generation failed:', error);
     throw error;
