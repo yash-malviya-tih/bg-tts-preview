@@ -4,18 +4,19 @@ import { generateSpeech } from '../services/ttsService';
 import { LANGUAGE_DEMOS } from '../constants';
 import { BharatGenVoice, LanguageDemo, getAccentDisplayName } from '../types';
 import IndiaAccentMap from './IndiaAccentMap';
+import LogoVisualizer from './LogoVisualizer';
 
 
 const DemoWidget: React.FC = () => {
   // State
-  const [activeTab, setActiveTab] = useState<'clone' | 'bharatgen'>('bharatgen');
+  const [activeTab, setActiveTab] = useState<'clone' | 'bharatgen' | 'accents'>('bharatgen');
   const [cloneSelectedLang, setCloneSelectedLang] = useState(LANGUAGE_DEMOS[0]);
   const [cloneSelectedDemoIdx, setCloneSelectedDemoIdx] = useState(0);
   const [cloneRefFile, setCloneRefFile] = useState<File | null>(null);
   const [cloneRefText, setCloneRefText] = useState('');
   const [cloneUploadFile, setCloneUploadFile] = useState<File | null>(null);
   // null = no language filter chosen yet -> every accent's pin is shown on the map
-  const [bharatgenSelectedLang, setBharatgenSelectedLang] = useState<LanguageDemo | null>(null);
+  const [accentsSelectedLang, setAccentsSelectedLang] = useState<LanguageDemo | null>(null);
   const [bharatgenVoices, setBharatgenVoices] = useState<BharatGenVoice[]>([]);
   const [bharatgenError, setBharatgenError] = useState<string | null>(null);
   const [bharatgenSelectedId, setBharatgenSelectedId] = useState<string | null>(null);
@@ -35,7 +36,8 @@ const DemoWidget: React.FC = () => {
 
   // UI State
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [isBharatgenLangOpen, setIsBharatgenLangOpen] = useState(false);
+  const [isBharatgenOpen, setIsBharatgenOpen] = useState(false);
+  const [isAccentsLangOpen, setIsAccentsLangOpen] = useState(false);
 
   // Refs
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -44,10 +46,10 @@ const DemoWidget: React.FC = () => {
   const activeRefText = activeTab === 'clone' ? cloneRefText : bharatgenRefText;
   const selectedBharatgenAccent = bharatgenVoices.find((voice) => voice.id === bharatgenSelectedId) || null;
   // No language chosen yet -> show every accent; otherwise filter down to that language's accents.
-  const bharatgenAccentsForLang = bharatgenSelectedLang
-    ? bharatgenVoices.filter((voice) => voice.languageId === bharatgenSelectedLang.id)
+  const accentsAccentsForLang = accentsSelectedLang
+    ? bharatgenVoices.filter((voice) => voice.languageId === accentsSelectedLang.id)
     : bharatgenVoices;
-  const bharatgenActiveStateIds = new Set(bharatgenAccentsForLang.map((voice) => voice.stateId));
+  const accentsActiveStateIds = new Set(accentsAccentsForLang.map((voice) => voice.stateId));
 
   // Effects
   useEffect(() => {
@@ -114,13 +116,13 @@ const DemoWidget: React.FC = () => {
   // The language dropdown is a view filter, not a requirement — only force the selected
   // accent to match once a specific language has actually been chosen (not on "All languages").
   useEffect(() => {
-    if (!bharatgenSelectedLang || bharatgenVoices.length === 0) return;
-    const matching = bharatgenVoices.filter((voice) => voice.languageId === bharatgenSelectedLang.id);
+    if (!accentsSelectedLang || bharatgenVoices.length === 0) return;
+    const matching = bharatgenVoices.filter((voice) => voice.languageId === accentsSelectedLang.id);
     const stillValid = matching.some((voice) => voice.id === bharatgenSelectedId);
     if (!stillValid && matching.length > 0) {
       setBharatgenSelectedId(matching[0].id);
     }
-  }, [bharatgenSelectedLang, bharatgenVoices, bharatgenSelectedId]);
+  }, [accentsSelectedLang, bharatgenVoices, bharatgenSelectedId]);
 
   useEffect(() => {
     if (!bharatgenSelectedId) return;
@@ -133,6 +135,9 @@ const DemoWidget: React.FC = () => {
         setBharatgenError(null);
         setBharatgenRefText(selected.refText || '');
         if (activeTab === 'bharatgen') {
+          const matchingLang = LANGUAGE_DEMOS.find((lang) => lang.id === selected.languageId);
+          setGenText(matchingLang ? matchingLang.demos[0].actual_text : (selected.sampleGenText || ''));
+        } else if (activeTab === 'accents') {
           setGenText(selected.sampleGenText || '');
         }
         const file = await loadAudioAsFile(selected.audioUrl, `${selected.id}.wav`);
@@ -215,7 +220,7 @@ const DemoWidget: React.FC = () => {
 
   const handleGenerate = async () => {
     if (!activeRefFile) {
-        setError(activeTab === 'bharatgen' ? "Select a BharatGen voice first." : "Upload a voice sample to clone first.");
+        setError(activeTab === 'clone' ? "Upload a voice sample to clone first." : "Select a BharatGen voice first.");
         return;
     }
     if (!activeRefText.trim()) {
@@ -292,24 +297,34 @@ const DemoWidget: React.FC = () => {
     setIsRefPlaying(false);
   };
 
-  const handleTabChange = (tab: 'clone' | 'bharatgen') => {
+  const handleTabChange = (tab: 'clone' | 'bharatgen' | 'accents') => {
     if (tab === activeTab) return;
     stopPlayback();
     setActiveTab(tab);
     setError(null);
     setIsLangOpen(false);
-    setIsBharatgenLangOpen(false);
+    setIsBharatgenOpen(false);
+    setIsAccentsLangOpen(false);
   };
 
   const isGenerateDisabled = isLoading || !activeRefFile;
 
   const generateHint = (() => {
     if (isLoading) return null;
-    if (!activeRefFile) return activeTab === 'bharatgen' ? 'Select an accent to continue' : 'Upload a voice sample to continue';
+    if (!activeRefFile) {
+      if (activeTab === 'clone') return 'Upload a voice sample to continue';
+      if (activeTab === 'accents') return 'Select an accent to continue';
+      return 'Select a voice to continue';
+    }
     if (!activeRefText.trim()) return 'Reference text is required';
     if (!genText.trim()) return 'Enter text to generate';
     return null;
   })();
+
+  const textareaHeightClass =
+    activeTab === 'bharatgen'
+      ? 'h-[86px] md:h-[120px] lg:h-[108px] 2xl:h-[126px]'
+      : 'h-[86px] md:h-[96px] lg:h-[220px] 2xl:h-[260px]';
 
   return (
     <div className="flex flex-col lg:flex-row h-full min-h-[420px] lg:min-h-[640px] 2xl:min-h-[720px] bg-white">
@@ -341,11 +356,22 @@ const DemoWidget: React.FC = () => {
                 <Users size={14} className="text-[color:rgb(var(--brand-blue))]" />
                 BharatGen Voices
             </button>
+            <button
+                onClick={() => handleTabChange('accents')}
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
+                  activeTab === 'accents'
+                    ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
+                    : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
+                }`}
+            >
+                <MapPin size={14} className="text-[color:rgb(var(--brand-blue))]" />
+                Indian Accents
+            </button>
         </div>
 
-        {/* Language filter + selected accent (BharatGen tab). Lives here rather than in the
+        {/* Language filter + selected accent (Indian Accents tab). Lives here rather than in the
             map column so the map itself gets that column's full height. */}
-        {activeTab === 'bharatgen' && (
+        {activeTab === 'accents' && (
             <div className="flex flex-wrap items-stretch gap-3 mb-3">
                 {bharatgenError && (
                     <div className="w-full text-xs text-red-500 bg-red-50 border border-red-100 px-3 py-2 rounded-lg">
@@ -355,42 +381,42 @@ const DemoWidget: React.FC = () => {
 
                 <div className="relative flex-1 min-w-[200px]">
                     <button
-                        onClick={() => setIsBharatgenLangOpen((prev) => !prev)}
+                        onClick={() => setIsAccentsLangOpen((prev) => !prev)}
                         className="w-full p-3 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center gap-3 hover:border-[color:rgb(var(--brand-blue))] transition-colors"
                     >
                         <div className="w-9 h-9 rounded-lg bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))] flex items-center justify-center shrink-0">
                             <Globe size={18} />
                         </div>
                         <div className="text-left min-w-0">
-                            <div className="text-base font-bold text-slate-700 truncate">{bharatgenSelectedLang ? bharatgenSelectedLang.name : 'All languages'}</div>
-                            <div className="text-xs text-slate-400 truncate">{bharatgenSelectedLang ? bharatgenSelectedLang.scriptLabel : 'Every accent shown'}</div>
+                            <div className="text-base font-bold text-slate-700 truncate">{accentsSelectedLang ? accentsSelectedLang.name : 'All languages'}</div>
+                            <div className="text-xs text-slate-400 truncate">{accentsSelectedLang ? accentsSelectedLang.scriptLabel : 'Every accent shown'}</div>
                         </div>
-                        <ChevronDown size={16} className={`text-slate-400 transition-transform shrink-0 ml-auto ${isBharatgenLangOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown size={16} className={`text-slate-400 transition-transform shrink-0 ml-auto ${isAccentsLangOpen ? 'rotate-180' : ''}`} />
                     </button>
 
-                    {isBharatgenLangOpen && (
+                    {isAccentsLangOpen && (
                         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-100 rounded-xl shadow-xl z-30 max-h-60 overflow-y-auto p-1">
                             <button
                                 onClick={() => {
-                                    setBharatgenSelectedLang(null);
-                                    setIsBharatgenLangOpen(false);
+                                    setAccentsSelectedLang(null);
+                                    setIsAccentsLangOpen(false);
                                 }}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${!bharatgenSelectedLang ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]' : 'hover:bg-slate-50 text-slate-600'}`}
+                                className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${!accentsSelectedLang ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]' : 'hover:bg-slate-50 text-slate-600'}`}
                             >
                                 <span>All languages</span>
-                                {!bharatgenSelectedLang && <Check size={14} />}
+                                {!accentsSelectedLang && <Check size={14} />}
                             </button>
                             {LANGUAGE_DEMOS.map((lang) => (
                                 <button
                                     key={lang.id}
                                     onClick={() => {
-                                        setBharatgenSelectedLang(lang);
-                                        setIsBharatgenLangOpen(false);
+                                        setAccentsSelectedLang(lang);
+                                        setIsAccentsLangOpen(false);
                                     }}
-                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${bharatgenSelectedLang?.id === lang.id ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]' : 'hover:bg-slate-50 text-slate-600'}`}
+                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${accentsSelectedLang?.id === lang.id ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]' : 'hover:bg-slate-50 text-slate-600'}`}
                                 >
                                     <span>{lang.name}</span>
-                                    {bharatgenSelectedLang?.id === lang.id && <Check size={14} />}
+                                    {accentsSelectedLang?.id === lang.id && <Check size={14} />}
                                 </button>
                             ))}
                         </div>
@@ -428,7 +454,7 @@ const DemoWidget: React.FC = () => {
                 value={genText}
                 onChange={(e) => setGenText(e.target.value)}
                 placeholder="Type something here to generate speech..."
-                className="w-full h-[86px] md:h-[96px] lg:h-[220px] 2xl:h-[260px] resize-none text-base font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed"
+                className={`w-full ${textareaHeightClass} resize-none text-base font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed`}
                 maxLength={300}
                 spellCheck={false}
             />
@@ -464,6 +490,24 @@ const DemoWidget: React.FC = () => {
                 <span>Generate Speech</span>
             </button>
         </div>
+
+        {/* Visualizer (BharatGen Voices tab only) */}
+        {activeTab === 'bharatgen' && (
+            <div className="mt-4 mb-3 2xl:mt-6 2xl:mb-4 flex flex-col items-center justify-center gap-3">
+                <div className="relative flex items-center justify-center px-2 py-1 rounded-full">
+                    <div
+                        className="absolute inset-0 rounded-full blur-3xl opacity-70 pointer-events-none"
+                        style={{
+                            background:
+                                'radial-gradient(circle, rgba(var(--brand-orange), 0.35) 0%, rgba(var(--brand-blue), 0.28) 45%, rgba(255,255,255,0) 72%)'
+                        }}
+                    />
+                    <div className="relative">
+                        <LogoVisualizer audioElementRef={audioRef} isPlaying={isLoading || isPlaying} />
+                    </div>
+                </div>
+            </div>
+        )}
 
         {/* Status / Playback Bar — pinned to the bottom so the column reads as intentional
             rather than leaving a floating gap under the Generate button. */}
@@ -532,14 +576,14 @@ const DemoWidget: React.FC = () => {
         </div>
       </div>
 
-      {/* --- ACCENT MAP (BharatGen tab only) --- */}
-      {activeTab === 'bharatgen' && (
+      {/* --- ACCENT MAP (Indian Accents tab only) --- */}
+      {activeTab === 'accents' && (
         <div className="order-2 lg:order-2 w-full lg:w-[560px] 2xl:w-[640px] shrink-0 bg-gradient-to-b from-slate-50/80 to-white border-t lg:border-t-0 lg:border-l border-slate-100 px-4 py-4 md:px-5 2xl:px-6 flex flex-col">
             <div className="flex items-baseline justify-between gap-2 shrink-0">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Accent map</span>
                 <span className="text-[11px] text-slate-400">
-                    {bharatgenAccentsForLang.length} {bharatgenAccentsForLang.length === 1 ? 'voice' : 'voices'}
-                    {bharatgenSelectedLang ? ` · ${bharatgenSelectedLang.name}` : ' · all languages'}
+                    {accentsAccentsForLang.length} {accentsAccentsForLang.length === 1 ? 'voice' : 'voices'}
+                    {accentsSelectedLang ? ` · ${accentsSelectedLang.name}` : ' · all languages'}
                 </span>
             </div>
 
@@ -547,8 +591,8 @@ const DemoWidget: React.FC = () => {
                 flex-sized parent here would make sizing circular and unpredictable. */}
             <div className="h-[340px] lg:h-[560px] 2xl:h-[640px] shrink-0">
                 <IndiaAccentMap
-                    accents={bharatgenAccentsForLang}
-                    activeStateIds={bharatgenActiveStateIds}
+                    accents={accentsAccentsForLang}
+                    activeStateIds={accentsActiveStateIds}
                     selectedAccentId={bharatgenSelectedId}
                     hoveredAccentId={hoveredAccentId}
                     onAccentHover={setHoveredAccentId}
@@ -557,10 +601,81 @@ const DemoWidget: React.FC = () => {
             </div>
 
             <p className="text-[11px] text-slate-400 text-center shrink-0 mt-auto pt-2">
-                {bharatgenSelectedLang
-                  ? `Click a pin to pick a ${bharatgenSelectedLang.name} accent.`
+                {accentsSelectedLang
+                  ? `Click a pin to pick a ${accentsSelectedLang.name} accent.`
                   : 'Click any pin, or filter by language on the left.'}
             </p>
+        </div>
+      )}
+
+      {/* --- VOICE PICKER SIDEBAR (BharatGen Voices tab only) --- */}
+      {activeTab === 'bharatgen' && (
+        <div className="order-1 lg:order-2 w-full lg:w-[330px] 2xl:w-[370px] bg-slate-50/50 border-l border-slate-100 p-4 md:p-5 2xl:p-6 flex flex-col gap-4 2xl:gap-5">
+            <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">BharatGen Voices</label>
+                </div>
+                <div className="space-y-3">
+                    {bharatgenError && (
+                        <div className="text-xs text-red-500 bg-red-50 border border-red-100 px-3 py-2 rounded-lg">
+                            {bharatgenError}
+                        </div>
+                    )}
+                    <div className="relative">
+                        <button
+                            onClick={() => setIsBharatgenOpen((prev) => !prev)}
+                            className="w-full p-3 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center justify-between hover:border-[color:rgb(var(--brand-blue))] transition-colors"
+                        >
+                            <div className="text-left">
+                                <div className="text-sm font-bold text-slate-700">
+                                    {bharatgenVoices.find((voice) => voice.id === bharatgenSelectedId)?.name || 'Select a voice'}
+                                </div>
+                                <div className="text-[10px] text-slate-400">
+                                    {bharatgenVoices.find((voice) => voice.id === bharatgenSelectedId)?.languageName || 'Select language'}
+                                </div>
+                            </div>
+                            <ChevronDown size={16} className={`text-slate-400 transition-transform ${isBharatgenOpen ? 'rotate-180' : ''}`} />
+                        </button>
+
+                        {isBharatgenOpen && (
+                            <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-100 rounded-xl shadow-xl z-20 max-h-64 overflow-y-auto p-1">
+                                {bharatgenVoices.map((voice) => {
+                                    const isSelected = voice.id === bharatgenSelectedId;
+                                    return (
+                                        <button
+                                            key={voice.id}
+                                            onClick={() => {
+                                                setBharatgenSelectedId(voice.id);
+                                                setIsBharatgenOpen(false);
+                                            }}
+                                            className={`w-full text-left px-3 py-2 rounded-lg text-sm flex items-center justify-between ${
+                                                isSelected
+                                                  ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))]'
+                                                  : 'hover:bg-slate-50 text-slate-600'
+                                            }`}
+                                        >
+                                            <span className="font-semibold">{voice.name}</span>
+                                            <span className="text-[10px] text-slate-400">{voice.languageName}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                    {refPreviewUrl && (
+                        <button
+                            onClick={toggleRefPlay}
+                            className="mt-1 inline-flex items-center gap-2 text-[11px] text-[color:rgb(var(--brand-blue))] hover:text-[color:rgb(var(--brand-orange))] transition-colors"
+                        >
+                            {isRefPlaying ? <Pause size={12} /> : <Play size={12} />}
+                            Preview selected voice
+                        </button>
+                    )}
+                    <div className="rounded-xl border border-slate-100 bg-white px-3 py-2 text-[10px] text-slate-400">
+                        Output language is locked to the selected speaker.
+                    </div>
+                </div>
+            </div>
         </div>
       )}
 
