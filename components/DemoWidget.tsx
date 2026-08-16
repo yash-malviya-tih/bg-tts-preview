@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Play, Pause, Loader2, FileAudio, Mic, Users, Globe, ChevronDown, Check, X, RefreshCw, Wand2, MapPin } from 'lucide-react';
+import { Upload, Play, Pause, Loader2, FileAudio, Mic, Square, Users, Globe, ChevronDown, Check, X, RefreshCw, Wand2, MapPin } from 'lucide-react';
+import { useVoiceRecorder } from './useVoiceRecorder';
 import { generateSpeech } from '../services/ttsService';
 import { LANGUAGE_DEMOS } from '../constants';
 import { BharatGenVoice, LanguageDemo, getAccentDisplayName } from '../types';
@@ -33,6 +34,16 @@ const DemoWidget: React.FC = () => {
   const [isRefPlaying, setIsRefPlaying] = useState(false);
   const [generationMs, setGenerationMs] = useState<number | null>(null);
   const generateStartRef = useRef<number | null>(null);
+
+  const { isRecording, recordingError, clearRecordingError, handleRecordToggle } = useVoiceRecorder({
+    onRecorded: (file) => {
+      setActiveTab('clone');
+      setCloneRefFile(file);
+      setCloneUploadFile(file);
+      setCloneRefText('');
+      setError(null);
+    },
+  });
 
   // UI State
   const [isLangOpen, setIsLangOpen] = useState(false);
@@ -687,18 +698,35 @@ const DemoWidget: React.FC = () => {
               <div className="space-y-3">
                       <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Custom Upload</label>
                       {!cloneUploadFile ? (
-                          <div className="relative group">
-                              <input
-                                  type="file"
-                                  accept=".wav,.mp3,audio/wav,audio/mpeg"
-                                  onChange={handleFileChange}
-                                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                              />
-                              <div className="h-14 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 group-hover:bg-[color:rgb(var(--brand-orange)/0.12)] group-hover:border-[color:rgb(var(--brand-orange)/0.4)] transition-all flex flex-col items-center justify-center gap-1">
-                                  <Upload className="text-slate-400 group-hover:text-[color:rgb(var(--brand-orange))] transition-colors" size={20} />
-                                  <span className="text-xs font-medium text-slate-500 group-hover:text-[color:rgb(var(--brand-orange))]">Upload Reference Voice (.wav, .mp3)</span>
+                          <>
+                              <div className="relative group">
+                                  <input
+                                      type="file"
+                                      accept=".wav,.mp3,audio/wav,audio/mpeg"
+                                      onChange={handleFileChange}
+                                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                  />
+                                  <div className="h-14 border-2 border-dashed border-slate-300 rounded-xl bg-slate-50 group-hover:bg-[color:rgb(var(--brand-orange)/0.12)] group-hover:border-[color:rgb(var(--brand-orange)/0.4)] transition-all flex flex-col items-center justify-center gap-1">
+                                      <Upload className="text-slate-400 group-hover:text-[color:rgb(var(--brand-orange))] transition-colors" size={20} />
+                                      <span className="text-xs font-medium text-slate-500 group-hover:text-[color:rgb(var(--brand-orange))]">Upload Reference Voice (.wav, .mp3)</span>
+                                  </div>
                               </div>
-                          </div>
+                              <button
+                                  type="button"
+                                  onClick={() => { clearRecordingError(); handleRecordToggle(); }}
+                                  className={isRecording
+                                      ? "w-full h-12 rounded-xl bg-red-50 text-red-600 border border-red-200 font-semibold text-sm flex items-center justify-center gap-2"
+                                      : "w-full h-12 rounded-xl bg-white text-slate-700 border border-slate-200 font-semibold text-sm flex items-center justify-center gap-2 hover:border-[color:rgb(var(--brand-blue))]"}
+                              >
+                                  {isRecording ? <Square size={14} /> : <Mic size={14} />}
+                                  {isRecording ? 'Stop Recording' : 'Record Reference Voice'}
+                              </button>
+                              {recordingError && (
+                                  <div className="text-xs text-red-500 bg-red-50 border border-red-100 px-3 py-2 rounded-lg">
+                                      {recordingError}
+                                  </div>
+                              )}
+                          </>
                       ) : null}
                       {!cloneUploadFile && (
                           <p className="text-[10px] text-slate-400 leading-relaxed">
