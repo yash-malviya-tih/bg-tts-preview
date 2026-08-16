@@ -321,11 +321,6 @@ const DemoWidget: React.FC = () => {
     return null;
   })();
 
-  const textareaHeightClass =
-    activeTab === 'bharatgen'
-      ? 'h-[86px] md:h-[120px] lg:h-[108px] 2xl:h-[126px]'
-      : 'h-[86px] md:h-[96px] lg:h-[220px] 2xl:h-[260px]';
-
   return (
     <div className="flex flex-col lg:flex-row h-full min-h-[420px] lg:min-h-[640px] 2xl:min-h-[720px] bg-white">
 
@@ -333,39 +328,39 @@ const DemoWidget: React.FC = () => {
       <div className="order-3 lg:order-1 flex-1 min-w-0 flex flex-col p-4 md:p-5 lg:p-6 2xl:p-7 relative">
 
         {/* Top Tabs */}
-        <div className="flex items-center gap-2 mb-3">
-            <button
-                onClick={() => handleTabChange('clone')}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
-                  activeTab === 'clone'
-                    ? 'bg-[color:rgb(var(--brand-blue)/0.12)] text-[color:rgb(var(--brand-blue))] shadow-sm'
-                    : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-blue))]'
-                }`}
-            >
-                <Mic size={14} className="text-[color:rgb(var(--brand-orange))]" />
-                Voice Cloning
-            </button>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
             <button
                 onClick={() => handleTabChange('bharatgen')}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
+                className={`px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
                   activeTab === 'bharatgen'
                     ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
                     : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
                 }`}
             >
-                <Users size={14} className="text-[color:rgb(var(--brand-blue))]" />
+                <Users size={14} className="text-[color:rgb(var(--brand-orange))]" />
                 BharatGen Voices
             </button>
             <button
                 onClick={() => handleTabChange('accents')}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
+                className={`px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
                   activeTab === 'accents'
                     ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
                     : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
                 }`}
             >
-                <MapPin size={14} className="text-[color:rgb(var(--brand-blue))]" />
+                <MapPin size={14} className="text-[color:rgb(var(--brand-orange))]" />
                 Indian Accents
+            </button>
+            <button
+                onClick={() => handleTabChange('clone')}
+                className={`px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
+                  activeTab === 'clone'
+                    ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
+                    : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
+                }`}
+            >
+                <Mic size={14} className="text-[color:rgb(var(--brand-orange))]" />
+                Voice Cloning
             </button>
         </div>
 
@@ -454,7 +449,7 @@ const DemoWidget: React.FC = () => {
                 value={genText}
                 onChange={(e) => setGenText(e.target.value)}
                 placeholder="Type something here to generate speech..."
-                className={`w-full ${textareaHeightClass} resize-none text-base font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed`}
+                className="w-full h-[86px] md:h-[120px] lg:h-[108px] 2xl:h-[126px] resize-none text-base font-light text-slate-800 placeholder:text-slate-300 outline-none bg-transparent leading-relaxed"
                 maxLength={300}
                 spellCheck={false}
             />
@@ -464,7 +459,7 @@ const DemoWidget: React.FC = () => {
             </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 mt-3">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-3">
             {isGenerateDisabled && generateHint ? (
                 <p className="text-[11px] text-slate-400 font-medium">{generateHint}</p>
             ) : <span />}
@@ -491,9 +486,9 @@ const DemoWidget: React.FC = () => {
             </button>
         </div>
 
-        {/* Visualizer (BharatGen Voices tab only) */}
-        {activeTab === 'bharatgen' && (
-            <div className="mt-4 mb-3 2xl:mt-6 2xl:mb-4 flex flex-col items-center justify-center gap-3">
+        {/* Visualizer (Voice Cloning + BharatGen Voices tabs) */}
+        {activeTab !== 'accents' && (
+            <div className="mt-4 mb-3 2xl:mt-6 2xl:mb-4 hidden sm:flex flex-col items-center justify-center gap-3">
                 <div className="relative flex items-center justify-center px-2 py-1 rounded-full">
                     <div
                         className="absolute inset-0 rounded-full blur-3xl opacity-70 pointer-events-none"
