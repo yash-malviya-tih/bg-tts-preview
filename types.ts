@@ -51,4 +51,4 @@ export interface BharatGenVoice {
 }
 
 export const getAccentDisplayName = (voice: BharatGenVoice): string =>
-  voice.accentName || `${voice.district}, ${voice.state}`;
+  voice.accentName || `${voice.district} ${voice.languageName}`;

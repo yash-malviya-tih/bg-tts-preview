@@ -10,6 +10,17 @@ View your app in AI Studio: https://ai.studio/apps/drive/1ScFnj9K1YQcbz8j1w9z18d
 
 ## Run Locally
 
+docker run -itd \
+  --name f5-tts-demo-ui \
+  --pid=host \
+  --ipc=host \
+  --network=host \
+  -v /fsxspeech:/fsxspeech \
+  -v /home:/home_real \
+  -v /opt/dlami/nvme:/opt/dlami/nvme \
+  node:22 \
+  sleep infinity
+
 **Prerequisites:**  Node.js
 
 
