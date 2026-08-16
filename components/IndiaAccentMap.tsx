@@ -114,7 +114,6 @@ const IndiaAccentMap: React.FC<IndiaAccentMapProps> = ({
               onMouseLeave={() => onAccentHover(null)}
               onClick={() => onAccentClick(accent.id)}
             >
-              <title>{`${getAccentDisplayName(accent)} — ${accent.district}, ${accent.state}`}</title>
               <g
                 className={`cursor-pointer transition-transform duration-200 ease-out ${
                   isSelected ? 'scale-150' : isHovered ? 'scale-110' : 'scale-100'
