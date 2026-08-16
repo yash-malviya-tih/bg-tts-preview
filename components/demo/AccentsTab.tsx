@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Play, Pause, Globe, ChevronDown, Check, MapPin } from 'lucide-react';
 import { LANGUAGE_DEMOS } from '../../constants';
 import { BharatGenVoice, LanguageDemo, getAccentDisplayName } from '../../types';
-import IndiaAccentMap from '../IndiaAccentMap';
+import IndiaAccentMap from '../common/IndiaAccentMap';
 import { DEFAULT_GEN_TEXT, RefPreview, TabController, fetchVoices, useVoiceHydration, useVoiceSession } from './shared';
 
 export interface AccentsController extends TabController {

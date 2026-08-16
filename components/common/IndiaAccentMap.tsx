@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ComposableMap, Geographies, Geography, Marker, createCoordinates } from '@vnedyalk0v/react19-simple-maps';
 import { geoMercator } from 'd3-geo';
 import { feature } from 'topojson-client';
-import { BharatGenVoice, getAccentDisplayName } from '../types';
-import indiaTopology from '../data/india-states.json';
+import { BharatGenVoice, getAccentDisplayName } from '../../types';
+import indiaTopology from '../../data/india-states.json';
 
 interface IndiaAccentMapProps {
   accents: BharatGenVoice[];

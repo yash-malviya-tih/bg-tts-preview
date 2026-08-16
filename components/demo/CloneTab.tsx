@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Upload, Play, Pause, FileAudio, Mic, Square, Globe, ChevronDown, Check, X, RefreshCw } from 'lucide-react';
 import { LANGUAGE_DEMOS } from '../../constants';
 import { LanguageDemo } from '../../types';
-import { useVoiceRecorder } from '../useVoiceRecorder';
+import { useVoiceRecorder } from '../common/useVoiceRecorder';
 import { DEFAULT_GEN_TEXT, RefPreview, TabController, useVoiceSession } from './shared';
 
 const MAX_UPLOAD_MB = 20;

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Loader2, Mic, Users, Check, Wand2, MapPin } from 'lucide-react';
 import { generateSpeech } from '../services/ttsService';
-import LogoVisualizer from './LogoVisualizer';
+import LogoVisualizer from './common/LogoVisualizer';
 import { RefPreview, TabController, TabId } from './demo/shared';
 import { CloneSidebar, useCloneTab } from './demo/CloneTab';
 import { BharatGenSidebar, useBharatGenTab } from './demo/BharatGenTab';

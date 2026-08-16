@@ -27,7 +27,7 @@ The app must work under `VITE_APP_BASE` (default `/sooktam/`). Never hardcode as
 ## Data / assets
 
 - Voice catalog: `public/bharatgen-voices.json` + `public/voices/*.wav`. `BharatGenVoice.stateId` must match `id` in `data/india-states.json`.
-- Map (`components/IndiaAccentMap.tsx`): `data/india-states.json` is imported as a parsed topojson object (not a URL — the map lib rejects plain-HTTP geography URLs in local dev) and features with `id === '-99'` are filtered out.
+- Map (`components/common/IndiaAccentMap.tsx`): `data/india-states.json` is imported as a parsed topojson object (not a URL — the map lib rejects plain-HTTP geography URLs in local dev) and features with `id === '-99'` are filtered out.
 
 ## UI stack quirks
 
@@ -35,4 +35,4 @@ The app must work under `VITE_APP_BASE` (default `/sooktam/`). Never hardcode as
 - `react`, `react-dom`, `lucide-react` are also served via an `esm.sh` importmap in `index.html`. Keep importmap versions in sync with `package.json`.
 - `metadata.json` declares microphone frame permission (AI Studio).
 - Voice cloning requires a reference audio + its transcript (`refText`); clone tab and BharatGen tab share the same `generateSpeech` path.
-- `DemoWidget.tsx` is only the shell (tabs, text box, Generate, playback). Each tab lives in `components/demo/{CloneTab,BharatGenTab,AccentsTab}.tsx` as a `use*Tab()` hook plus its panel, and returns a `TabController` (`components/demo/shared.ts`). Every tab tracks its own gen text / ref text / ref audio via `useVoiceSession()`, so switching tabs never mixes them.
+- `DemoWidget.tsx` is only the shell (tabs, text box, Generate, playback). Each tab lives in `components/demo/{CloneTab,BharatGenTab,AccentsTab}.tsx` as a `use*Tab()` hook plus its panel, and returns a `TabController` (`components/demo/shared.ts`). Every tab tracks its own gen text / ref text / ref audio via `useVoiceSession()`, so switching tabs never mixes them. Widget-agnostic pieces (accent map, logo visualizer, recorder hook) live in `components/common/`.
