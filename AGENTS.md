@@ -17,7 +17,7 @@ React 19 + Vite 6 + TypeScript demo widget for BharatGen Sooktam TTS (voice clon
 
 ## Base path gotcha
 
-The app must work under `VITE_APP_BASE` (default `/sooktam/`). Never hardcode asset URLs — use `buildAppUrl()` (`constants.tsx`) or `resolveAssetUrl()` (`DemoWidget.tsx`), which prepend `BASE_URL`. This applies to `/voices/*.wav`, `bharatgen-logo.png`, and `bharatgen-voices.json` fetches.
+The app must work under `VITE_APP_BASE` (default `/sooktam/`). Never hardcode asset URLs — use `buildAppUrl()` (`constants.tsx`) or `resolveAssetUrl()` (`components/demo/shared.ts`), which prepend `BASE_URL`. This applies to `/voices/*.wav`, `bharatgen-logo.png`, and `bharatgen-voices.json` fetches.
 
 ## Language support caveats
 
@@ -35,3 +35,4 @@ The app must work under `VITE_APP_BASE` (default `/sooktam/`). Never hardcode as
 - `react`, `react-dom`, `lucide-react` are also served via an `esm.sh` importmap in `index.html`. Keep importmap versions in sync with `package.json`.
 - `metadata.json` declares microphone frame permission (AI Studio).
 - Voice cloning requires a reference audio + its transcript (`refText`); clone tab and BharatGen tab share the same `generateSpeech` path.
+- `DemoWidget.tsx` is only the shell (tabs, text box, Generate, playback). Each tab lives in `components/demo/{CloneTab,BharatGenTab,AccentsTab}.tsx` as a `use*Tab()` hook plus its panel, and returns a `TabController` (`components/demo/shared.ts`). Every tab tracks its own gen text / ref text / ref audio via `useVoiceSession()`, so switching tabs never mixes them.
