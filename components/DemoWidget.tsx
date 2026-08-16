@@ -14,6 +14,34 @@ const TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
 ];
 
 /**
+ * Rendered twice — hoisted to the top of the stack on phones (where the canvas column
+ * sits last) and inline above the text box from `lg` up. `className` carries the
+ * display utility so each call site controls which breakpoint shows it.
+ */
+const TabBar: React.FC<{ activeTab: TabId; onChange: (tab: TabId) => void; className: string }> = ({
+  activeTab,
+  onChange,
+  className,
+}) => (
+  <div className={`flex-col sm:flex-row sm:items-center gap-2 ${className}`}>
+    {TABS.map(({ id, label, icon: Icon }) => (
+      <button
+        key={id}
+        onClick={() => onChange(id)}
+        className={`px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
+          activeTab === id
+            ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
+            : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
+        }`}
+      >
+        <Icon size={14} className="text-[color:rgb(var(--brand-orange))]" />
+        {label}
+      </button>
+    ))}
+  </div>
+);
+
+/**
  * Shell around the three tabs: it owns the text box, the Generate action and audio
  * playback. Each tab (see ./demo) owns its own reference audio, transcript and gen
  * text, and exposes them through a TabController.
@@ -170,25 +198,16 @@ const DemoWidget: React.FC = () => {
 
   return (
     <div className="flex flex-col lg:flex-row h-full min-h-[420px] lg:min-h-[640px] 2xl:min-h-[720px] bg-white">
+      {/* Phone/tablet: tabs lead the stack, since the canvas column comes last there. */}
+      <TabBar
+        activeTab={activeTab}
+        onChange={handleTabChange}
+        className="order-first flex lg:hidden px-4 pt-4 md:px-5 md:pt-5"
+      />
+
       {/* --- CANVAS: TEXT INPUT + GENERATE --- */}
       <div className="order-3 lg:order-1 flex-1 min-w-0 flex flex-col p-4 md:p-5 lg:p-6 2xl:p-7 relative">
-        {/* Top Tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-          {TABS.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => handleTabChange(id)}
-              className={`px-4 py-2.5 sm:py-1.5 rounded-full text-sm font-semibold flex items-center gap-2 transition-all ${
-                activeTab === id
-                  ? 'bg-[color:rgb(var(--brand-orange)/0.12)] text-[color:rgb(var(--brand-orange))] shadow-sm'
-                  : 'bg-slate-50 text-slate-500 hover:text-[color:rgb(var(--brand-orange))]'
-              }`}
-            >
-              <Icon size={14} className="text-[color:rgb(var(--brand-orange))]" />
-              {label}
-            </button>
-          ))}
-        </div>
+        <TabBar activeTab={activeTab} onChange={handleTabChange} className="hidden lg:flex mb-3" />
 
         {activeTab === 'accents' && <AccentsControls accents={accents} refPreview={refPreview} />}
 
