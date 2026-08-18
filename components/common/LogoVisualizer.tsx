@@ -285,7 +285,7 @@ const LogoVisualizer: React.FC<LogoVisualizerProps> = ({ audioElementRef, isPlay
         ref={canvasRef} 
         width={576} 
         height={576} 
-        className="absolute inset-[-108px] 2xl:inset-[-132px] z-0 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
       />
       
       {/* Wave gradients + mood orb */}
