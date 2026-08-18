@@ -1,611 +1,650 @@
 [
   {
     "id": "morigaon",
-    "name": "morigaon",
-    "languageId": "as",
-    "languageName": "assamese",
-    "accentName": "morigaon",
+    "name": "Morigaon",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Assam",
-    "stateId": "as",
-    "district": "morigaon",
+    "stateId": "AS",
+    "district": "Morigaon",
     "coordinates": [
       92.3572669,
       26.2545556
     ],
     "audioUrl": "/voices/hindi_final/Assamese_055224.wav",
     "refText": "আৰু চাহকণ দিবও নোৱাৰোঁ তেতিয়াহ লে এইখন গৃহ গৃহ নহয় বুলি নিজকে ভাবোঁ সেইকাৰণে সেইখিনিও ভকত বৈষ্ণৱৰ প্ৰতি চিন্তা কৰোঁ সেইকাৰণে ভকতক সদায় আহিলে আদৰণি কৰিব মোৰ মন যায় বহিবলৈ আসনখন দিওঁ",
-    "sampleGenText": "खेतों में हरी-भरी फ़सल को देख कर अंजन खुश हो कर निकल पडा।"
+    "sampleGenText": "खेतों में हरी-भरी फ़सल को देख कर अंजन खुश हो कर निकल पडा।",
+    "refLanguageId": "as",
+    "refLanguageName": "Assamese"
   },
   {
     "id": "samastipur",
-    "name": "samastipur",
-    "languageId": "mai",
-    "languageName": "maithili",
-    "accentName": "samastipur",
+    "name": "Samastipur",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Bihar",
-    "stateId": "br",
-    "district": "samastipur",
+    "stateId": "BR",
+    "district": "Samastipur",
     "coordinates": [
       85.8672314,
       25.7747885
     ],
     "audioUrl": "/voices/hindi_final/Maithili_002980.wav",
     "refText": "आ ओना तऽ सब दिना भात रोटी बनबे करै है साँझ भिनसर रोटियो खा लेलक रोटी बनेलहुॅं तऽ कहलक भात ला भात बनेलही तऽ रोटी बना",
-    "sampleGenText": "विशेषज्ञों ने कहा कि यदि सरकार द्वारा प्रस्तावित नई योजना समय पर लागू नहीं की गई, तो ग्रामीण क्षेत्रों में रहने वाले लोगों को इसका अपेक्षित लाभ नहीं मिल पाएगा।"
+    "sampleGenText": "विशेषज्ञों ने कहा कि यदि सरकार द्वारा प्रस्तावित नई योजना समय पर लागू नहीं की गई, तो ग्रामीण क्षेत्रों में रहने वाले लोगों को इसका अपेक्षित लाभ नहीं मिल पाएगा।",
+    "refLanguageId": "mai",
+    "refLanguageName": "Maithili"
   },
   {
     "id": "udupi",
-    "name": "udupi",
-    "languageId": "kn",
-    "languageName": "kannada",
-    "accentName": "udupi",
+    "name": "Udupi",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Karnataka",
-    "stateId": "ka",
-    "district": "udupi",
+    "stateId": "KA",
+    "district": "Udupi",
     "coordinates": [
       74.8731879,
       13.5269784
     ],
     "audioUrl": "/voices/hindi_final/Kannada_014215.wav",
     "refText": "ಅಂದರೆ ವಾಟ್ಸಪ್ ಕೂಡ ಹಾಗೆ ನಮಗೆ ಯಾವುದಾದ್ರು ಒಂದು ವಿದೇಶದಲ್ಲಿ ಇರುವ ಒಂದು ವ್ಯಕ್ತಿ ಅನ್ನ ಅಂದರೆ ನಮಗಿಂತ ದೂರ ಇರೋ ವ್ಯಕ್ತಿಯನ್ನು ನೋಡಬೇಕು ನಮಗೆ ಈಗ ಅವರನ್ನು ಒಂದು ಪರಿಚಯ ಮಾತನಾಡಿಸ್ಬೇಕು ಅಂತಂದರೆ ನಮಗೆ ಈಗ ವಾಟ್ಸಪ್ ಇದ್ದದ್ದರಿಂದ ನಮಗೆ ತುಂಬ",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "kn",
+    "refLanguageName": "Kannada"
   },
   {
     "id": "tumkur",
-    "name": "tumkur",
-    "languageId": "kn",
-    "languageName": "kannada",
-    "accentName": "tumkur",
+    "name": "Tumkur",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Karnataka",
-    "stateId": "ka",
-    "district": "tumkur",
+    "stateId": "KA",
+    "district": "Tumkur",
     "coordinates": [
       77.1006208,
       13.3400771
     ],
     "audioUrl": "/voices/hindi_final/Kannada_007274.wav",
     "refText": "ಮತ್ತು ಕರ ಕರೆ ಕಲೆ ಯಾವ ಯಾವ ರೀತಿ ಚಿತ್ರ ಕಲೆಗಳನ್ನು ಸ್ಮಾರಕಗಳನ್ನು ಬಿಡ್ಸ್ತಾರೋ ಈ ರೀತಿ ಮಾಡ್ತಾರೆ ತುಮಕೂರು ಜಿಲ್ಲೆಯಲ್ಲಿ ವಿಶೇಷ ಸ್ಥಳೀಯ ಅಂತಹ ಕಲಾ ಪ್ರಕಾರಗಳನ್ನು ಕಾಣ್ಭೌದು ಯಕ್ಷಗಾನ ಆಡ್ಬೋದು ಯಕ್ಷಗಾನ ಹಾಗೂ ಇಗೋದು ಈ ರೀತಿ ಮುಂತಾದವುಗಳನ್ನು ಮಾಡುವುದರ ಮೂಲಕ",
-    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।"
+    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।",
+    "refLanguageId": "kn",
+    "refLanguageName": "Kannada"
   },
   {
     "id": "kozhikode",
-    "name": "kozhikode",
-    "languageId": "ml",
-    "languageName": "malayalam",
-    "accentName": "kozhikode",
+    "name": "Kozhikode",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Kerala",
-    "stateId": "kl",
-    "district": "kozhikode",
+    "stateId": "KL",
+    "district": "Kozhikode",
     "coordinates": [
       75.7754716,
       11.2450558
     ],
     "audioUrl": "/voices/hindi_final/Malayalam_020829.wav",
     "refText": "ഞങ്ങളുടെ പ്രദേശത്ത് കളിക്കുന്ന കളികളെന്ന് പറയുമ്പോൾ ബാറ്റ് കളി ക്രിക്കറ്റ് കളി",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "ml",
+    "refLanguageName": "Malayalam"
   },
   {
     "id": "thiruvananthapuram",
-    "name": "thiruvananthapuram",
-    "languageId": "ml",
-    "languageName": "malayalam",
-    "accentName": "thiruvananthapuram",
+    "name": "Thiruvananthapuram",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Kerala",
-    "stateId": "kl",
-    "district": "thiruvananthapuram",
+    "stateId": "KL",
+    "district": "Thiruvananthapuram",
     "coordinates": [
       76.947551,
       8.4882267
     ],
     "audioUrl": "/voices/hindi_final/Malayalam_001479.wav",
     "refText": "വേണ്ടത് ആദ്യത്തെ ഒരു ഇമ്പോർട്ടൻറ്റ് ആയിട്ടുള്ള ഒരു ഘടകം ആണ് ഞാനേറ്റം കൂടുതൽ എനിക്കെഴുതാൻ എഴുതാനായാലും അതുപോലെ തന്നെ ചിന്തകളിലും",
-    "sampleGenText": "स्टार्ट-अप इंडिया इनोवेशन वीक के दौरान, देश के यूनिकॉर्न्स की प्रगति का जश्न मनाने और उनके विकास को नई दिशा देने के लिए केंद्रीय मंत्री पीयूष गोयल की अध्यक्षता में आयोजित इस गोलमेज परिषद में भविष्य की रणनीतियों पर चर्चा की गई; क्या भारतीय युवा उद्यमी वैश्विक स्तर पर अपनी पहचान बना पाएंगे"
+    "sampleGenText": "स्टार्ट-अप इंडिया इनोवेशन वीक के दौरान, देश के यूनिकॉर्न्स की प्रगति का जश्न मनाने और उनके विकास को नई दिशा देने के लिए केंद्रीय मंत्री पीयूष गोयल की अध्यक्षता में आयोजित इस गोलमेज परिषद में भविष्य की रणनीतियों पर चर्चा की गई; क्या भारतीय युवा उद्यमी वैश्विक स्तर पर अपनी पहचान बना पाएंगे",
+    "refLanguageId": "ml",
+    "refLanguageName": "Malayalam"
   },
   {
     "id": "thane",
-    "name": "thane",
-    "languageId": "mr",
-    "languageName": "marathi",
-    "accentName": "thane",
+    "name": "Thane",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Maharashtra",
-    "stateId": "mh",
-    "district": "thane",
+    "stateId": "MH",
+    "district": "Thane",
     "coordinates": [
       73.3685437,
       19.3653598
     ],
     "audioUrl": "/voices/hindi_final/Marathi_000715.wav",
     "refText": "त्यामुळे लोकांना त्या त्या रोडाचा खूप फायदा झाला जिथे लाँग रु ल म्हणजे जिथे एकदम लांब रस्त्याने जायचं हो असेल तर तिथे त्या रोडा र रोडामुळे फायदा झाला लोकांना लोकांना त्यामुळे त्या त्याचा फायदा झाला",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "mr",
+    "refLanguageName": "Marathi"
   },
   {
     "id": "solapur",
-    "name": "solapur",
-    "languageId": "mr",
-    "languageName": "marathi",
-    "accentName": "solapur",
+    "name": "Solapur",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Maharashtra",
-    "stateId": "mh",
-    "district": "solapur",
+    "stateId": "MH",
+    "district": "Solapur",
     "coordinates": [
       75.2763203,
       17.8499067
     ],
     "audioUrl": "/voices/hindi_final/Marathi_000660.wav",
     "refText": "उलट हे आपल्या हृदयाचे ठोके स्थिर करते ह्यामुळं हृदयाचा धोका कमी होतो रक्तवाहिन्यांसंबंधी व्यायाम करतात तेव्हा आपली तग धरण्याची क्षमता सुधारते दम देखील लागतो",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "mr",
+    "refLanguageName": "Marathi"
   },
   {
     "id": "thoubal",
-    "name": "thoubal",
-    "languageId": "mni",
-    "languageName": "manipuri",
-    "accentName": "thoubal",
+    "name": "Thoubal",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Manipur",
-    "stateId": "mn",
-    "district": "thoubal",
+    "stateId": "MN",
+    "district": "Thoubal",
     "coordinates": [
       93.996871,
       24.6386954
     ],
     "audioUrl": "/voices/hindi_final/Manipuri_001092.wav",
     "refText": "ꯑꯩꯅ ꯅꯝꯈ꯭ꯔꯕ ꯐꯣꯇꯣꯁꯤꯡꯁꯦ ꯇꯁꯦꯡꯅ ꯍꯥꯏꯔ ꯀꯥꯟꯗ ꯑꯩ ꯄꯦꯠꯁ ꯑꯦꯟ ꯅꯦꯆꯔꯗ ꯉꯥꯎꯕ ꯃꯤꯅꯤ ꯑꯗꯨꯗꯨꯅ ꯍꯥꯏꯗꯤ ꯇꯁꯦꯡꯅ ꯑꯩꯒꯤ ꯐꯣꯇꯣꯁꯦ ꯕꯦꯖ ꯇꯧꯔꯛꯄ ꯀꯥꯟꯗ ꯑꯅꯝꯕꯅ ꯑꯦꯅꯤꯃꯦꯜꯁ ꯑꯦꯟ ꯅꯦꯆꯔꯗ ꯇꯥꯏ ꯑꯅꯝꯕꯅ ꯇꯁꯦꯡꯅ ꯎꯕ ꯀꯥꯟꯗ ꯍꯥꯏꯗꯤ ꯅꯦꯆꯔ ꯑꯃ ꯎꯕ ꯀꯥꯟꯗ ꯍꯥꯏꯗꯤ ꯁꯟ ꯁꯦꯠꯄꯨ ꯑꯣꯏꯔꯣ ꯁꯟ ꯔꯥꯏꯖꯄꯨ ꯑꯣꯏꯔꯣ",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "mni",
+    "refLanguageName": "Manipuri"
   },
   {
     "id": "kandhamal",
-    "name": "kandhamal",
-    "languageId": "or",
-    "languageName": "odia",
-    "accentName": "kandhamal",
+    "name": "Kandhamal",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Odisha",
-    "stateId": "od",
-    "district": "kandhamal",
+    "stateId": "OD",
+    "district": "Kandhamal",
     "coordinates": [
       84.0790476,
       20.1306939
     ],
     "audioUrl": "/voices/hindi_final/Odia_007663.wav",
     "refText": "ଟ୍ରାକିଂ ଆଇଡି ଛଅ ତିନି ଆଠ ନଅ ଛଅ ଏକ ଛଅ ଦୁଇ ଏକ ଛଅ ଥିବା ମୋର ଇପିଏଫ୍ଓ ପ୍ରାପ୍ୟ ସାବ୍ୟସ୍ତର ସ୍ଥିତି କ ଣ",
-    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।"
+    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।",
+    "refLanguageId": "or",
+    "refLanguageName": "Odia"
   },
   {
     "id": "nayagarh",
-    "name": "nayagarh",
-    "languageId": "or",
-    "languageName": "odia",
-    "accentName": "nayagarh",
+    "name": "Nayagarh",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Odisha",
-    "stateId": "od",
-    "district": "nayagarh",
+    "stateId": "OD",
+    "district": "Nayagarh",
     "coordinates": [
       85.050728,
       20.2393682
     ],
     "audioUrl": "/voices/hindi_final/Odia_010062.wav",
     "refText": "ମୁଁ ପିଲାମାନଙ୍କୁ ସରକାରୀ ସ୍କୁଲରେ ପଢ଼ାଉଛି ତେଣୁ ସେମାନଙ୍କୁ ଭର୍ତ୍ତି କରିବାପାଇଁ ସ୍କୁଲରେ କୋଣସି ଦେୟ ଫିସ ନାହିଁ ଯାହା ସେମାନଙ୍କୁ ପଢ଼ାଇବାରେ ବିଭିନ୍ନ ସାମଗ୍ରୀ ଖାତା ପେନ",
-    "sampleGenText": "विशेषज्ञों ने कहा कि यदि सरकार द्वारा प्रस्तावित नई योजना समय पर लागू नहीं की गई, तो ग्रामीण क्षेत्रों में रहने वाले लोगों को इसका अपेक्षित लाभ नहीं मिल पाएगा।"
+    "sampleGenText": "विशेषज्ञों ने कहा कि यदि सरकार द्वारा प्रस्तावित नई योजना समय पर लागू नहीं की गई, तो ग्रामीण क्षेत्रों में रहने वाले लोगों को इसका अपेक्षित लाभ नहीं मिल पाएगा।",
+    "refLanguageId": "or",
+    "refLanguageName": "Odia"
   },
   {
     "id": "patiala",
-    "name": "patiala",
-    "languageId": "pa",
-    "languageName": "punjabi",
-    "accentName": "patiala",
+    "name": "Patiala",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Punjab",
-    "stateId": "pb",
-    "district": "patiala",
+    "stateId": "PB",
+    "district": "Patiala",
     "coordinates": [
       76.3397231,
       30.2092778
     ],
     "audioUrl": "/voices/hindi_final/Punjabi_000983.wav",
     "refText": "ਮੈਂ ਸਕੂਲ ਦੇ ਵਿੱਚ ਛੇਵੀਂ ਕਲਾਸ ਤੋਂ ਜਿਹੜੀ ਪਹਿਲੀ ਵਾਰ ਪੇਂਟਿੰਗ ਸਿੱਖੀ ਸੀਗੀ ਸਕੂਲ ਦੇ ਵਿੱਚ ਜਦੋਂ ਸਾਨੂੰ ਪਹਿਲੀ ਵਾਰ ਪੇਂਟਿੰਗ ਸਿਖਾਈ ਗਈ ਸੀਗੀ ਤਾਂ ਸਾਨੂੰ ਸਟਾਰਟਿੰਗ ਸਾਡੀ ਪੈਨਸਲ ਨਾਲ",
-    "sampleGenText": "चहकती चिडिया और फूलों की महक से उसका मन भावविभोर हो गया"
+    "sampleGenText": "चहकती चिडिया और फूलों की महक से उसका मन भावविभोर हो गया",
+    "refLanguageId": "pa",
+    "refLanguageName": "Punjabi"
   },
   {
     "id": "purba bardhaman",
-    "name": "purba bardhaman",
-    "languageId": "bn",
-    "languageName": "bengali",
-    "accentName": "purba bardhaman",
+    "name": "Purba Bardhaman",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "West Bengal",
-    "stateId": "wb",
-    "district": "purba bardhaman",
+    "stateId": "WB",
+    "district": "Purba Bardhaman",
     "coordinates": [
       87.9068097,
       23.388517
     ],
     "audioUrl": "/voices/hindi_final/Bengali_016142.wav",
     "refText": "এবং বছরে তারা দুবার ধান লাগায় দেখা যাবে অনেক সময় বর্ষার টাইমটাতে পানি হল না সেই জন্য তাদের চাষের ধানে প্রচণ্ড ক্ষতি হয়ে যায় এবং কোনো সময় পোকা লাগার কারণে চাষিরা সেই জন্য ধান পায় না কোনো সময় আবার কোনো কোনো ক্ষেত্রে দেখা যাবে খুব ভালো রকম ধানের ফলন হয় কিন্তু এইগুলো হচ্ছে চাষিদের মধ্যে চাষিদের একটা ভাগ্যর বিষয়",
-    "sampleGenText": "खेतों में हरी-भरी फ़सल को देख कर अंजन खुश हो कर निकल पडा।"
+    "sampleGenText": "खेतों में हरी-भरी फ़सल को देख कर अंजन खुश हो कर निकल पडा।",
+    "refLanguageId": "bn",
+    "refLanguageName": "Bengali"
   },
   {
     "id": "purulia",
-    "name": "purulia",
-    "languageId": "bn",
-    "languageName": "bengali",
-    "accentName": "purulia",
+    "name": "Purulia",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "West Bengal",
-    "stateId": "wb",
-    "district": "purulia",
+    "stateId": "WB",
+    "district": "Purulia",
     "coordinates": [
       86.3228988,
       23.2020967
     ],
     "audioUrl": "/voices/hindi_final/Bengali_018599.wav",
     "refText": "শিক্ষকের কাছ থেকে ছোটোবেলায় উপহার হিসেবে পেয়েছিলাম এবং আমি এখনো সেই বইটি খুব যত্ন সহকারে রেখে দিয়েছি আমার ওই গল্পগুলি পড়তেও খুব ভালো লাগে",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "bn",
+    "refLanguageName": "Bengali"
   },
   {
     "id": "jhargram",
-    "name": "jhargram",
-    "languageId": "bn",
-    "languageName": "bengali",
-    "accentName": "jhargram",
+    "name": "Jhargram",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "West Bengal",
-    "stateId": "wb",
-    "district": "jhargram",
+    "stateId": "WB",
+    "district": "Jhargram",
     "coordinates": [
       86.9949477,
       22.4538505
     ],
     "audioUrl": "/voices/hindi_final/Bengali_032577.wav",
     "refText": "আমরা কোনো গাড়িকে স্কুলে ছাড়লে সেটাকে আমরা ট্র্যাকিং করে বুঝে নিতে পারছি কোন জায়গাতে গাড়িটা রয়েছে এই ধরনের বিভিন্ন ধরনের কাজ আমরা আজকের দিনে প্রযুক্তির সাথে অনেকটাই এগিয়ে করে নিতে পারছি",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "bn",
+    "refLanguageName": "Bengali"
   },
   {
     "id": "jalpaiguri",
-    "name": "jalpaiguri",
-    "languageId": "ne",
-    "languageName": "nepali",
-    "accentName": "jalpaiguri",
+    "name": "Jalpaiguri",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "West Bengal",
-    "stateId": "wb",
-    "district": "jalpaiguri",
+    "stateId": "WB",
+    "district": "Jalpaiguri",
     "coordinates": [
       88.7334485,
       26.6262805
     ],
     "audioUrl": "/voices/hindi_final/Nepali_009303.wav",
     "refText": "सहरमा हो भने उनी शिक्षै नभए तापनि उनीहरूले अन्य कामहरू सहरमा धेरै किसिमको कामहरू हुन्छ उनीहरू त्यस्ता गरेर पनि खाइरहेका हुन्छन् तर गाउँमा जो शिक्षित हुँदैन उनीहरूलाई एकदमै समस्या भइरहेको हुन्छ",
-    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।"
+    "sampleGenText": "सहयोग से आगे बढते हुए यात्रियों ने धुंध से ढकी चोटियाँ, बहते झरने और चौड़ी घाटियों का अद्भुत दृश्य देखा।",
+    "refLanguageId": "ne",
+    "refLanguageName": "Nepali"
   },
-    {
+  {
     "id": "tehrigarhwal",
-    "name": "tehrigarhwal",
+    "name": "Tehrigarhwal",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "tehrigarhwal",
     "state": "Uttarakhand",
     "stateId": "UK",
-    "district": "tehrigarhwal",
-    "coordinates": [78.5240, 30.2934],
+    "district": "Tehrigarhwal",
+    "coordinates": [
+      78.524,
+      30.2934
+    ],
     "audioUrl": "/voices/hindi_final/IISc_VaaniProject_M_Uttarakhand_TehriGarhwal_Yogi12646_0943030000_GENERIC_0674_5965_15038.wav",
     "refText": "और इनके आस-पास बहुत सारे पेड़ लगे हुए हैं नीचे मिट्टी है कच्चा है और इसके साइड वहाँ पर बकरियाँ खड़ी हुई हैं।",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
-{
+  {
     "id": "sonbhadra",
-    "name": "sonbhadra",
+    "name": "Sonbhadra",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "sonbhadra",
     "state": "Uttar Pradesh",
     "stateId": "UP",
-    "district": "sonbhadra",
+    "district": "Sonbhadra",
     "coordinates": [
       83.0653,
       24.6897
     ],
     "audioUrl": "/voices/hindi_final/Hindi_019314.wav",
     "refText": "स्कूल की तो बात ही अलग है वहाँ काफ़ी बच्चे हमेशा उत्साह में रहते हैं डांस में पार्टिसिपेट करना हो या गेम में पार्टिसिपेट करना हो या लैक्चर में पार्टिसिपेट करना हो",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "jodhpur",
-    "name": "jodhpur",
+    "name": "Jodhpur",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "jodhpur",
     "state": "Rajasthan",
     "stateId": "RJ",
-    "district": "jodhpur",
+    "district": "Jodhpur",
     "coordinates": [
       73.0243,
       26.2389
     ],
     "audioUrl": "/voices/hindi_final/Hindi_021308.wav",
     "refText": "मतलब उनको जो आपकी द्रव्य मतलब जो पदार्थ हो रहा है उससे कुछ दो उनको उनकी घर का समस्या आप सुलझाओ ऐसे करने से क्या होगा",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "jaipur",
-    "name": "jaipur",
+    "name": "Jaipur",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "jaipur",
     "state": "Rajasthan",
     "stateId": "RJ",
-    "district": "jaipur",
+    "district": "Jaipur",
     "coordinates": [
       75.7878,
       26.9196
     ],
     "audioUrl": "/voices/hindi_final/Hindi_018273.wav",
     "refText": "और बहुत सारी सुविधाएँ उन्हें प्राप्त होती हैं जैसे कि उन्हें जहाँ वह रहते हैं आस पास में बहुत सारी घूमने फिरने की चीज़ें उन्हें मिल जाती हैं और काफी सारे पैसे उनके बच जाते हैं आने जाने के",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "karauli",
-    "name": "karauli",
+    "name": "Karauli",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "karauli",
     "state": "Rajasthan",
     "stateId": "RJ",
-    "district": "karauli",
+    "district": "Karauli",
     "coordinates": [
       77.1025,
       26.4904
     ],
     "audioUrl": "/voices/hindi_final/Hindi_015898.wav",
     "refText": "इसलिए मैंने आई टी आई की और निर्णय लिया कि मुझे इलेक्ट्रीशियन बनना है और मैं इलेक्ट्रीशियन बन गया उसका काम करता हूँ अच्छी तनख्वाह मिल जाती है बढ़िया सिस्टम है उसमें लोड भी ज़्यादा नहीं है काम का",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "katni",
-    "name": "katni",
+    "name": "Katni",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "katni",
     "state": "Madhya Pradesh",
     "stateId": "MP",
-    "district": "katni",
+    "district": "Katni",
     "coordinates": [
       80.3942,
       23.8356
     ],
     "audioUrl": "/voices/hindi_final/Hindi_001358.wav",
     "refText": "लेकिन अंग्रेजी के कुछ शब्द ऐसे होते हैं जो समझ में नहीं आते और बोल भी नहीं पाते मतलब इतने अटपटे होते हैं कि बोलने में भी अजीब लगता है और हिंदी में",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "bhadohi",
-    "name": "bhadohi",
+    "name": "Bhadohi",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "bhadohi",
     "state": "Uttar Pradesh",
     "stateId": "UP",
-    "district": "bhadohi",
+    "district": "Bhadohi",
     "coordinates": [
       82.5701,
       25.3941
     ],
     "audioUrl": "/voices/hindi_final/Hindi_006770.wav",
     "refText": "हमारा दौड़ कर्नाटक में थी और वहाँ पर देखे काफ़ी बच्चे थे जो कि मेहनत कर रहे थे काफ़ी बच्चे दौड़ने आए थे कुछ का सेलेक्सन हुआ कुछ का नहीं हुआ और जैसा कि मेरा भी फिजिकल तो निकला दौड़ तो लिए कुछ टाइम में और",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "darbhanga",
-    "name": "darbhanga",
+    "name": "Darbhanga",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "darbhanga",
     "state": "Bihar",
     "stateId": "BR",
-    "district": "darbhanga",
+    "district": "Darbhanga",
     "coordinates": [
       85.9007,
       26.1542
     ],
     "audioUrl": "/voices/hindi_final/Hindi_000543.wav",
     "refText": "तो ये सब कुछ जो खेलने के विराट कोहली था ये सब खेलने का था फ़ायदा उन लोगों का यू पी में जो है दिल्ली में जो है सुविधा मिलती थी इसी लिए वो लोग खेलते थे",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "mehsana",
-    "name": "mehsana",
-    "languageId": "gu",
-    "languageName": "gujarati",
-    "accentName": "mehsana",
+    "name": "Mehsana",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Gujarat",
-    "stateId": "gj",
-    "district": "mehsana",
+    "stateId": "GJ",
+    "district": "Mehsana",
     "coordinates": [
       72.3741516,
       23.6012628
     ],
     "audioUrl": "/voices/hindi_final/Gujarati_000492.wav",
     "refText": "તે બેગમાં પાણીની બૉટલ અને જરૂરી દવાઓ પણ હોય છે કારણ કે બાઈકિંગ કરતી વખતે સલામતી રાખવી જરૂરી છે",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "gu",
+    "refLanguageName": "Gujarati"
   },
   {
     "id": "morbi",
-    "name": "morbi",
-    "languageId": "gu",
-    "languageName": "gujarati",
-    "accentName": "morbi",
+    "name": "Morbi",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Gujarat",
-    "stateId": "gj",
-    "district": "morbi",
+    "stateId": "GJ",
+    "district": "Morbi",
     "coordinates": [
       70.886232,
       22.8003959
     ],
     "audioUrl": "/voices/hindi_final/Gujarati_000796.wav",
     "refText": "જેમાં જુદા જુદા વિભાગ પોલીસ ખાતુ છે આરોગ્ય છે શિક્ષણ છે આવા બધાય જુદા જુદા વિભાગો છે રાજ્યમાં મોરબી જિલ્લો પ્રતિનિધિત્ત્વ પણ કરે છે એમાં રાષ્ટ્રીય રીતે પણ મોરબી જિલ્લો ઘણી બધી રીતે આગળ છે",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "gu",
+    "refLanguageName": "Gujarati"
   },
   {
     "id": "samba",
-    "name": "samba",
-    "languageId": "doi",
-    "languageName": "dogri",
-    "accentName": "samba",
+    "name": "Samba",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Jammu and Kashmir",
-    "stateId": "jk",
-    "district": "samba",
+    "stateId": "JK",
+    "district": "Samba",
     "coordinates": [
       75.1203446,
       32.5759118
     ],
     "audioUrl": "/voices/hindi_final/Dogri_005977.wav",
     "refText": "एह् नदी बतवाल ते मैंगलोर आस्तै पानी दा मुक्ख जरिया ऐ",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "doi",
+    "refLanguageName": "Dogri"
   },
   {
     "id": "udhampur",
-    "name": "udhampur",
-    "languageId": "doi",
-    "languageName": "dogri",
-    "accentName": "udhampur",
+    "name": "Udhampur",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Jammu and Kashmir",
-    "stateId": "jk",
-    "district": "udhampur",
+    "stateId": "JK",
+    "district": "Udhampur",
     "coordinates": [
       75.1331482,
       32.9219726
     ],
     "audioUrl": "/voices/hindi_final/Dogri_014554.wav",
     "refText": "ओह् पैह्ले महान आदमी न जि नें जेह्की जेह्के मारजलाइज लोक न उं दे आस्तै गल्ल कीती ही होर अ ऊं निक्की देई गल्ल सनानी आं जेह्की साढ़ी अ यू पी ऐस्सी दी टापर जेह्की टीना डाबी ऐ",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "doi",
+    "refLanguageName": "Dogri"
   },
   {
     "id": "chennai",
-    "name": "chennai",
-    "languageId": "sa",
-    "languageName": "sanskrit",
-    "accentName": "chennai",
+    "name": "Chennai",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Tamil Nadu",
-    "stateId": "tn",
-    "district": "chennai",
+    "stateId": "TN",
+    "district": "Chennai",
     "coordinates": [
       80.270186,
       13.0836939
     ],
     "audioUrl": "/voices/hindi_final/Sanskrit_000605.wav",
     "refText": "अनन्तरं पूरिका पूरिका अस्ति वा महोदय पूरिका हा अस्तु एक सेट् पूरिका अस्ति चेत् तद् प्रेषयतु महोदय अनन्तरं लस्सि अस्ति वा महोदय लस्सी",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "sa",
+    "refLanguageName": "Sanskrit"
   },
   {
     "id": "tiruppur",
-    "name": "tiruppur",
-    "languageId": "ta",
-    "languageName": "tamil",
-    "accentName": "tiruppur",
+    "name": "Tiruppur",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Tamil Nadu",
-    "stateId": "tn",
-    "district": "tiruppur",
+    "stateId": "TN",
+    "district": "Tiruppur",
     "coordinates": [
       77.5325466,
       10.7915267
     ],
     "audioUrl": "/voices/hindi_final/Tamil_003098.wav",
     "refText": "ஒரு வார காலத்துக்காக நாங்கள் கொண்டாடுறதுனால அந்த பண்டிகை வந்து எங்களுக்கு எல்லார்த்துக்கும் ரொம்ப சந்தோஷமாக கொண்டாடுறதுனால அந்த தைபூசத் திருவிழாவை",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "ta",
+    "refLanguageName": "Tamil"
   },
   {
     "id": "mahbubnagar",
-    "name": "mahbubnagar",
-    "languageId": "te",
-    "languageName": "telugu",
-    "accentName": "mahbubnagar",
+    "name": "Mahbubnagar",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Telangana",
-    "stateId": "ts",
-    "district": "mahbubnagar",
+    "stateId": "TS",
+    "district": "Mahbubnagar",
     "coordinates": [
       77.9923191,
       16.7434538
     ],
     "audioUrl": "/voices/hindi_final/Telugu_011287.wav",
     "refText": "అదే పల్లెటూరు కదా అక్కడ ఏం రోడ్లు సదుపాయాలు సరిగా ఉండవు కాబట్టి బస్సులు అలాంటివి ఎక్కువ ఏమి తిరిగవు ఒకవేళ మేము పోవాలి అనుకుంటే ఎస్పెషల్గా ఒక బస్సు ఒక ఛి ఒక ఆటో అలాంటి మాట్లాడుకుని పైసలు ఇచ్చి పోవాల్సి వస్తుంది",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "te",
+    "refLanguageName": "Telugu"
   },
   {
     "id": "chittoor",
-    "name": "chittoor",
-    "languageId": "te",
-    "languageName": "telugu",
-    "accentName": "chittoor",
+    "name": "Chittoor",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Andhra Pradesh",
-    "stateId": "ap",
-    "district": "chittoor",
+    "stateId": "AP",
+    "district": "Chittoor",
     "coordinates": [
       79.6480611,
       13.325036
     ],
     "audioUrl": "/voices/hindi_final/Telugu_017091.wav",
     "refText": "చాలాసేపు వెయిట్ చేయలేను బిల్లింగ్ అప్పుడే నేను మీకు కాల్ చేసి బుక్ చేసుకుంటానండి సరే గోపి గారిని కొంచెం త్వరగా వచ్చేయమని చెప్పండి",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "te",
+    "refLanguageName": "Telugu"
   },
   {
     "id": "nellore",
-    "name": "nellore",
-    "languageId": "te",
-    "languageName": "telugu",
-    "accentName": "nellore",
+    "name": "Nellore",
+    "languageId": "hi",
+    "languageName": "Hindi",
     "state": "Andhra Pradesh",
-    "stateId": "ap",
-    "district": "nellore",
+    "stateId": "AP",
+    "district": "Nellore",
     "coordinates": [
       79.9873763,
       14.4493717
     ],
     "audioUrl": "/voices/hindi_final/Telugu_046168.wav",
     "refText": "తినడానికి గింజల్ని అవన్నీ ఉంచుకుంటాడు అలాగే దానికి కావలసిన పెట్టుబడిని కూడా తను ఎక్కడో ఒక్కొక్క దిక్కున తెచ్చుకుంటాడు కాబట్టి ఆ ఆదాయాన్ని పోనూ",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "te",
+    "refLanguageName": "Telugu"
   },
   {
     "id": "deoghar",
-    "name": "deoghar",
+    "name": "Deoghar",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "deoghar",
     "state": "Jharkhand",
     "stateId": "JH",
-    "district": "deoghar",
+    "district": "Deoghar",
     "coordinates": [
       86.6953,
-      24.4850
+      24.485
     ],
     "audioUrl": "/voices/hindi_final/IISc_VaaniProject_K_Jharkhand_Deoghar_Deoghar844425030204197_009_GENERIC_0651_12110_17582.wav",
     "refText": "बैकग्राउंड का रंग है स्काई ब्लू और इधर काला रंग का भी है।",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "bastar",
-    "name": "bastar",
+    "name": "Bastar",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "bastar",
     "state": "Chhattisgarh",
-    "stateId": "CG",
-    "district": "bastar",
+    "stateId": "CT",
+    "district": "Bastar",
     "coordinates": [
       81.9515,
       19.0948
     ],
     "audioUrl": "/voices/hindi_final/IISc_VaaniProject_M_Chhattisgarh_Bastar_Aaru80013_0504450000_Bastar-SPECIFIC_01437_433_6933.wav",
     "refText": "यह एक मॉल दिख रहा है मॉल व्हाइट कलर का दिख रहा है यहाँ काउंटर में एक भगवान की मूर्ति दिख रही है।",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   },
   {
     "id": "raipur",
-    "name": "raipur",
+    "name": "Raipur",
     "languageId": "hi",
     "languageName": "Hindi",
-    "accentName": "raipur",
     "state": "Chhattisgarh",
-    "stateId": "CG",
-    "district": "raipur",
+    "stateId": "CT",
+    "district": "Raipur",
     "coordinates": [
       81.6296,
       21.2514
     ],
     "audioUrl": "/voices/hindi_final/IISc_VaaniProject_M_Chhattisgarh_Raipur_raju4700700ce77d_47007094615000081643_GENERIC_0419_828_7276.wav",
     "refText": "इस तस्वीर में जो फोटो है यह एक बिल्डिंग की है जिसमें काम चल रहा है सीमेंट रखा है रेती है गिट्टी है।",
-    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।"
+    "sampleGenText": "मैदान में बच्चे ऊँची आवाज़ में खिलखिलाते हुए क्रिकेट खेल रहे थे, और ऋषभ ने ज़ोर से छक्का मारा।",
+    "refLanguageId": "hi",
+    "refLanguageName": "Hindi"
   }
 ]
