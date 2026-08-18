@@ -51,12 +51,13 @@ export const useAccentsTab = (): AccentsController => {
   }, []);
 
   const visibleAccents = useMemo(
-    () => (langFilter ? accents.filter((voice) => voice.languageId === langFilter.id) : accents),
+    () => (langFilter ? accents.filter((voice) => voice.genLanguageId === langFilter.id) : accents),
     [accents, langFilter]
   );
-  const activeStateIds = useMemo(() => new Set(visibleAccents.map((voice) => voice.stateId)), [visibleAccents]);
+  // const activeStateIds = useMemo(() => new Set(visibleAccents.map((voice) => voice.stateId)), [visibleAccents]);
+  const activeStateIds = new Set<string>();
   const availableLanguages = useMemo(() => {
-    const ids = new Set(accents.map((v) => v.languageId));
+    const ids = new Set(accents.map((v) => v.genLanguageId!));
     return LANGUAGE_DEMOS.filter((l) => ids.has(l.id));
   }, [accents]);
 
@@ -78,7 +79,8 @@ export const useAccentsTab = (): AccentsController => {
 
   return {
     session,
-    language: selectedVoice?.languageId || '',
+    language: selectedVoice?.refLanguageId || selectedVoice?.languageId || '',
+    genLanguage: selectedVoice?.genLanguageId || undefined,
     error: loadError,
     emptyRefHint: 'Select an accent to continue',
     missingRefError: 'Pick an accent on the map first.',

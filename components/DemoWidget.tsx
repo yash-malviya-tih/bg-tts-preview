@@ -164,6 +164,7 @@ const DemoWidget: React.FC = () => {
         refText: session.refText,
         text: session.genText,
         language: active.language,
+        genLanguage: active.genLanguage,
       });
       setGeneratedAudioUrl(url);
       if (generateStartRef.current) {
@@ -301,14 +302,14 @@ const DemoWidget: React.FC = () => {
                   {isPlaying ? <Pause size={14} /> : <Play size={14} />}
                   {isPlaying ? 'Pause' : 'Replay'}
                 </button>
-                <button
+                {/* <button
                   onClick={handleGenerate}
                   disabled={isGenerateDisabled}
                   className="px-5 py-2 rounded-full border border-slate-200 hover:border-[color:rgb(var(--brand-orange))] text-slate-600 hover:text-[color:rgb(var(--brand-orange))] font-semibold text-sm transition-colors flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   <Wand2 size={14} />
                   Generate again
-                </button>
+                </button> */}
               </div>
             )}
           </div>

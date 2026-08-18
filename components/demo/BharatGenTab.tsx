@@ -53,6 +53,7 @@ export const useBharatGenTab = (): BharatGenController => {
   return {
     session,
     language: selectedVoice?.languageId || '',
+    genLanguage: undefined,
     error: catalogError || loadError,
     emptyRefHint: 'Select a voice to continue',
     missingRefError: 'Select a BharatGen voice first.',

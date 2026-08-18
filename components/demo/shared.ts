@@ -36,8 +36,10 @@ export interface RefPreview {
  */
 export interface TabController {
   session: VoiceSession;
-  /** Language id sent to the TTS backend. */
+  /** Language id sent as the `lang` query param to the TTS backend (ref audio language). */
   language: string;
+  /** Language id sent as the `gen_lang` query param (gen text language); omit to use same as `lang`. */
+  genLanguage?: string;
   /** Tab-level load error, rendered by that tab's own panel. */
   error: string | null;
   /** Hint under the disabled Generate button while there is no reference audio. */

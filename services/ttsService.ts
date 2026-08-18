@@ -112,13 +112,17 @@ const base64ToBlob = (base64: string, type: string): Blob => {
 };
 
 /**
- * POST /v1/tts?lang=<code> with JSON {ref_audio_base64, ref_text, gen_text}.
- * Responds with JSON {audio_base64, ref_text_ipa, gen_text_ipa}.
+ * POST /v1/tts?lang=<code>&gen_lang=<code> with JSON {ref_audio_base64, ref_text, gen_text}.
+ * gen_lang overrides langauge for gen_text language; omit to use same as lang. Responds with
+ * JSON {audio_base64, ref_text_ipa, gen_text_ipa}.
  */
 export const generateSpeech = async (payload: TTSRequest): Promise<string> => {
   try {
     const refAudioBase64 = await toBase64(payload.refAudio);
-    const url = `${API_URL}?lang=${encodeURIComponent(resolveLanguage(payload.language))}`;
+    let url = `${API_URL}?lang=${encodeURIComponent(resolveLanguage(payload.language))}`;
+    if (payload.genLanguage) {
+      url += `&gen_lang=${encodeURIComponent(resolveLanguage(payload.genLanguage))}`;
+    }
 
     let response: Response;
     try {

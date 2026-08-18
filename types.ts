@@ -5,6 +5,7 @@ export interface TTSRequest {
   refText: string;
   text: string;
   language?: string;
+  genLanguage?: string;
   nfeStep?: number;
   speed?: number;
 }
@@ -40,6 +41,10 @@ export interface BharatGenVoice {
   name: string;
   languageId: string;
   languageName: string;
+  genLanguageId?: string;
+  genLanguageName?: string;
+  refLanguageId?: string;
+  refLanguageName?: string;
   accentName?: string;
   state: string;
   stateId: string; // matches the `id` property in data/india-states.json
@@ -51,4 +56,4 @@ export interface BharatGenVoice {
 }
 
 export const getAccentDisplayName = (voice: BharatGenVoice): string =>
-  voice.accentName || `${voice.district} ${voice.languageName}`;
+  voice.accentName || `${voice.district} ${voice.genLanguageName ?? voice.languageName}`;
