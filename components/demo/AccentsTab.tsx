@@ -11,6 +11,7 @@ export interface AccentsController extends TabController {
   setLangFilter: (lang: LanguageDemo | null) => void;
   visibleAccents: BharatGenVoice[];
   activeStateIds: Set<string>;
+  availableLanguages: LanguageDemo[];
   selectedVoice: BharatGenVoice | null;
   selectedId: string | null;
   selectAccent: (id: string) => void;
@@ -54,6 +55,14 @@ export const useAccentsTab = (): AccentsController => {
     [accents, langFilter]
   );
   const activeStateIds = useMemo(() => new Set(visibleAccents.map((voice) => voice.stateId)), [visibleAccents]);
+  const availableLanguages = useMemo(() => {
+    const ids = new Set(accents.map((v) => v.languageId));
+    return LANGUAGE_DEMOS.filter((l) => ids.has(l.id));
+  }, [accents]);
+
+  useEffect(() => {
+    if (langFilter && !availableLanguages.some((l) => l.id === langFilter.id)) setLangFilter(null);
+  }, [availableLanguages, langFilter]);
 
   // The language dropdown is a view filter, not a requirement — only force the
   // selection to match once a specific language has actually been chosen.
@@ -81,6 +90,7 @@ export const useAccentsTab = (): AccentsController => {
     },
     visibleAccents,
     activeStateIds,
+    availableLanguages,
     selectedVoice,
     selectedId,
     selectAccent: setSelectedId,
@@ -144,7 +154,7 @@ export const AccentsControls: React.FC<AccentsProps> = ({ accents, refPreview })
               <span>All languages</span>
               {!langFilter && <Check size={14} />}
             </button>
-            {LANGUAGE_DEMOS.map((lang) => (
+            {accents.availableLanguages.map((lang) => (
               <button
                 key={lang.id}
                 onClick={() => accents.setLangFilter(lang)}
